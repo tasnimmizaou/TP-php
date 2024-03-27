@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(src/2back.jpg); /* Remplacez 'chemin/vers/votre/image.jpg' par le chemin de votre image */
+    background-size: cover; /* Assure que l'image couvre tout l'arrière-plan */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    background-attachment: fixed; /* Fixe l'image en arrière-plan */
+    /* Vous pouvez également ajouter d'autres propriétés de style ici */
+}
