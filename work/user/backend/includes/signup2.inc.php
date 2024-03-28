@@ -4,8 +4,7 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
        $username=$_POST["username"];
        $password=$_POST["password"];
        $email=$_POST["email"];
-       $phone=$_POST["phone_number"];
-       $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+       $phone=$_POST["phone"];
 
        require_once "dbh.inc.php";
        require_once "signup_model.inc.php";
@@ -34,6 +33,7 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
        if ($errors){
           $_SESSION["errors_signup"] =$errors;
           header("location:../index.php");
+          die();
        } 
 
 
@@ -41,6 +41,14 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
      die();
     
      }
+     
+     create_user( $pdo , $username,  $password, $phone,  $email );
+     header("location:../index.php ? signup=success");
+     $pdo =null;
+     $stmt=null;
+     die();
+
+
       catch(PDOException $e)
      {
       die ("Error: " . $e->getMessage());

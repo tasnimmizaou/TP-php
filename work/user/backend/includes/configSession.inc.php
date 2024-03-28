@@ -12,7 +12,7 @@ session_set_cookie_params([
 
 ]);
 session_start();
-// regenration of the session ID every 30 minutes:
+// regenration of the session ID every 30 minutes for security mesures :
   if(!isset($Session['last_session_regenerate']) )
   { session_regenerate_id(true);
     $_SESSION['last_session_regenerate'] = time();
