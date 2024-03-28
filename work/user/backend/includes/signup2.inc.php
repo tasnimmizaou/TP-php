@@ -42,11 +42,11 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
     
      }
      
-     create_user( $pdo , $username,  $password, $phone,  $email );
+     /*create_user( $pdo , $username,  $password, $phone,  $email );
      header("location:../index.php ? signup=success");
      $pdo =null;
      $stmt=null;
-     die();
+     die();*/
 
 
       catch(PDOException $e)

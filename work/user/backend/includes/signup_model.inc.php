@@ -21,3 +21,20 @@ function get_email(object $pdo ,string $email ){
     $result=$stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
+
+function set_user(object $pdo , string $username, string $password,$phone, string $email )
+{ $query ="INSERT into users(username,password,phone,email) VALUES(:username,:password,:phone,:email); ";
+    $stmt= $pdo->prepare($query);
+    
+    $options =['cost'=>12];
+    $hashedpassword=password_hash($password,PASSWORD_BCRYPT,$options);
+
+    $stmt->bindParam(":email",$email);
+    $stmt->bindParam(":username",$username);
+    $stmt->bindParam(":password",$hashedpassword);
+    $stmt->bindParam(":phone",$phone);
+    $stmt->execute();
+
+    
+
+}
