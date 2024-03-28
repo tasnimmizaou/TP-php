@@ -11,7 +11,7 @@ require_once 'includes/signup_view.inc.php';
     </head>
 
     <body>
-        <form action='C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup2.inc.php' method='post'>
+        <form action='work\user\backend\includes\signup2.inc.php' method='post'>
             <h1>Sign Up</h1>
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" placeholder="Enter Username"><br>
