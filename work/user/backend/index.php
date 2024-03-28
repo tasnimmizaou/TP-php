@@ -1,6 +1,7 @@
 <?php 
 require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\configSession.inc.php';
 require_once 'includes/signup_view.inc.php';
+//require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup_contr.inc.php';
 
 ?>
 
@@ -10,7 +11,7 @@ require_once 'includes/signup_view.inc.php';
     </head>
 
     <body>
-        <form action='signup2.inc.php' method='post'>
+        <form action='C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup2.inc.php' method='post'>
             <h1>Sign Up</h1>
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" placeholder="Enter Username"><br>
@@ -31,3 +32,5 @@ require_once 'includes/signup_view.inc.php';
     </body>
 
 </html>
+
+

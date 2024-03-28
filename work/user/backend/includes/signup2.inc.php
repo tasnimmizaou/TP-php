@@ -4,7 +4,7 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
        $username=$_POST["username"];
        $password=$_POST["password"];
        $email=$_POST["email"];
-       $phone=$_POST["phone"];
+       $phone=$_POST["phone_number"];
        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
        require_once "dbh.inc.php";

@@ -23,3 +23,4 @@ session_start();
       $_SESSION['last_session_regenerate'] = time();
     }
   }
+  
