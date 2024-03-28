@@ -32,18 +32,18 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
         require_once 'configSession.inc.php';
        if ($errors){
           $_SESSION["errors_signup"] =$errors;
-          header("location:../index.php");
+          header("location:../signup.php");
           die();
        } 
 
 
-     header("location:../index.php");
+       header("location:../signup.php");
      die();
     
      }
      
      /*create_user( $pdo , $username,  $password, $phone,  $email );
-     header("location:../index.php ? signup=success");
+     header("location:../signup.php ? signup=success");
      $pdo =null;
      $stmt=null;
      die();*/
@@ -56,6 +56,6 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
 
 
 } else{
-  header("location:../index.php");
+  header("location:../signup.php");
   die();
 }

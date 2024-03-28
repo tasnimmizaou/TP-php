@@ -12,7 +12,8 @@ function check_signup_errors(){
         unset($_SESSION['signup_errors']);
         
         
-    } else {
-        return false;
+    } else if (isset($_GET["signup"]) && ($_GET["signup"] ==="success")) 
+    {
+        echo "SIGNED UP  SUCCESSFULLY ";
     }
 }

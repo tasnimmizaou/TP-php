@@ -1,7 +1,7 @@
 <?php 
 require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\configSession.inc.php';
 require_once 'includes/signup_view.inc.php';
-//require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup_contr.inc.php';
+require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup_contr.inc.php';
 
 ?>
 
@@ -36,6 +36,7 @@ require_once 'includes/signup_view.inc.php';
         </div>
         <button type="submit" style="width: 100%; padding: 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; font-size: 16px; cursor: pointer;">Sign Up</button>
     </form>
+
     <script>
         function validateForm() {
             var username = document.getElementById("username").value.trim();
@@ -57,6 +58,12 @@ require_once 'includes/signup_view.inc.php';
             return true;
         }
     </script>
+
+
+
+
+
+
 </div>
 
 
