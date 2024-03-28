@@ -7,6 +7,7 @@ if($_SERVER ["REQUEST_METHOD"] === 'POST'){
        $email=$_POST["email"];
        $phone=$_POST["phone"];
 
+
        require_once "dbh.inc.php";
        require_once "signup_model.inc.php";
        //require_once  "signup_view.inc.php";
