@@ -1,4 +1,3 @@
-<?php
 session_start();
 
 class Cart
@@ -78,6 +77,15 @@ class Cart
         header('location: index.php?page=cart');
         exit;
     }
+
+    // Send the user to the place order page if they click the Place Order button, also the cart should not be empty
+    public function placeOrder()
+    {
+        if (isset($_POST['placeorder']) && isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            header('Location: index.php?page=placeorder');
+            exit;
+        }
+    }
 }
 
 // Create an instance of Cart class
@@ -100,4 +108,7 @@ if (isset($_GET['remove']) && is_numeric($_GET['remove'])) {
 if (isset($_POST['update'])) {
     $cart->updateCart();
 }
+
+// Handle place order action
+$cart->placeOrder();
 ?>
