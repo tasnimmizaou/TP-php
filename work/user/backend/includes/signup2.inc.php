@@ -7,9 +7,9 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
   try {
    
 
-    require_once "dbh.inc.php";
+    require_once "dbhc.inc.php";
     require_once "signup_model.inc.php";
-    require_once "signup_cont.inc.php";
+    require_once "signup_contr.inc.php";
   
     // Error Handling:
     $errors = [];
