@@ -1,7 +1,7 @@
 <?php 
-require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\configSession.inc.php';
+require_once 'includes/configSession.inc.php';
 require_once 'includes/signup_view.inc.php';
-require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup_contr.inc.php';
+require_once 'includes/signup_contr.inc.php';
 
 ?>
 
