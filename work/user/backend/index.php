@@ -23,7 +23,7 @@ require_once 'includes/login_view.inc.php';
 
     <div style="margin-bottom: 15px;">
         <label for="password" style="display: block; font-weight: bold; margin-bottom: 5px;">Password:</label>
-        <input type="text" id="password" name="password" placeholder="********" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        <input type="password" id="password" name="password" placeholder="Enter password" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
     </div>
 
     

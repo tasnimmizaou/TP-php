@@ -15,6 +15,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
     $errors = [];
     if (is_input_empty($email,$password)) {
       $errors["empty_input"] = "Please enter all fields !!";
+      
     }
 
     if (is_email_invalid($email)) {
@@ -23,15 +24,15 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
     $result= get_email($pdo,$email);
 
-    if ( email_in_database($result))
+    if (! email_in_database($result))
       {
-        $errors["incorrect_email"] ="Please enter a valid email";
+        $errors["incorrect_email"] ="Please enter an email that matches an existing account !";
       }
 
-    if (is_password_wrong($password,  $result["password"])&&(!is_email_invalid($email)))  
+    /*if (is_password_wrong($password,  $result["password"])&&(!is_email_invalid($email)))  
     {
         $errors ["password_wrong"] = "Incorrect Passwords";
-    }
+    }*/
 
    
 
