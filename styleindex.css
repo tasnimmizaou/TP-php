@@ -2,16 +2,9 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color: #FFB6C1;
 }
-#navbar {
-    background-color: #333; /* couleur du navbar */
-    color: white; /* couleur du texte */
-    padding: 10px 20px; /* marge intérieure */
-    position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 9999; 
-}
+
 #frame {
     height: calc(100% - 50px); }
 iframe {

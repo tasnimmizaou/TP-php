@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+   /* background-image: url(src/2back.jpg); /* Remplacez 'chemin/vers/votre/image.jpg' par le chemin de votre image */
+   /* background-size: cover; /* Assure que l'image couvre tout l'arrière-plan */
+   /* background-repeat: no-repeat; /* Empêche la répétition de l'image */
+   /* background-attachment: fixed; /* Fixe l'image en arrière-plan */
+    
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFC0CB;
+    text-align: center;
+}
+
+
+.container {
+    max-width: 800px;
+    /*margin: 50px auto;*/
+    padding: 0 20px;
+    
+}
+.footer {
+    text-shadow: 1px 1px 2px rgb(235, 228, 233), 0 0 1em rgb(119, 117, 117),
+    0 0 0.2em rgb(121, 96, 103);
+    background-color: rgb(172, 36, 107);
+    }
+
