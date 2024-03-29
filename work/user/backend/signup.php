@@ -2,6 +2,7 @@
 require_once 'includes/configSession.inc.php';
 require_once 'includes/signup_view.inc.php';
 require_once 'includes/signup_contr.inc.php';
+require_once 'includes/login_model.inc.php';
 
 ?>
 
@@ -14,7 +15,7 @@ require_once 'includes/signup_contr.inc.php';
    
     <div style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
    
-    <form id="signup-form" action="includes/signup2.inc.php" method="post" onsubmit="return validateForm()">
+    <form id="signup-form" action="includes/signup2.inc.php" method="POST" >
 
         <h1 style="text-align: center;">Sign Up</h1>
         <div style="margin-bottom: 15px;">
@@ -63,10 +64,9 @@ require_once 'includes/signup_contr.inc.php';
     </script>
 
 
-</div>
+ </div>
 
-
-        <?php
+ <?php
         check_signup_errors();
         ?>
     </body>
