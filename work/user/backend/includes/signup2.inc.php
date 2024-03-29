@@ -1,10 +1,11 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] === 'POST'){
+   $username = $_POST["username"];
+   $password = $_POST["password"];
+   $email = $_POST["email"];
+   $phone = $_POST["phone"];
   try {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $email = $_POST["email"];
-    $phone = $_POST["phone"];
+   
 
     require_once "dbh.inc.php";
     require_once "signup_model.inc.php";
@@ -35,11 +36,26 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
       die();
     }
 
+    if($errors)
+    {
+        $_SESSION["errors_signup"] = $errors;
+        $signupData=[
+           "username"=>$username,
+           "email"=>$email,
+           "phone"=>$phone
+        ];
+        header("location:../signup.php");
+        die();
+    }
+
+
+
     create_user($pdo, $username, $password, $phone, $email);
     header("location:../signup.php?signup=success");
     $pdo = null;
     $stmt = null;
     die();
+
   } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
   }

@@ -63,10 +63,6 @@ require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup_co
     </script>
 
 
-
-
-
-
 </div>
 
 
