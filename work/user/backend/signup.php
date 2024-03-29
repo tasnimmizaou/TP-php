@@ -1,18 +1,21 @@
 <?php 
-require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\configSession.inc.php';
+require_once 'includes/configSession.inc.php';
 require_once 'includes/signup_view.inc.php';
-require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup_contr.inc.php';
+require_once 'includes/signup_contr.inc.php';
 
 ?>
 
 <html>
     <head>
-        <title>Signup and sign in </title>
+        <title>Signup</title>
     </head>
 
     <body>
+   
     <div style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+   
     <form id="signup-form" action="includes/signup2.inc.php" method="post" onsubmit="return validateForm()">
+
         <h1 style="text-align: center;">Sign Up</h1>
         <div style="margin-bottom: 15px;">
             <label for="username" style="display: block; font-weight: bold; margin-bottom: 5px;">Username:</label>
@@ -58,10 +61,6 @@ require_once 'C:\Users\tasni\Desktop\TP-php\work\user\backend\includes\signup_co
             return true;
         }
     </script>
-
-
-
-
 
 
 </div>
