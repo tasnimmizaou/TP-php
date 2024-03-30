@@ -21,17 +21,24 @@ class Product
         $this->stock = $stock;
     }
 
-    // Getters and setters can be implemented here as needed
+    public function getId()
+    {
+        return $this->id;
+    }
 
-    public function addToCart($cart, $quantity)
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function addToCart(Cart $cart, $quantity = 1)
     {
         return $cart->addProduct($this, $quantity);
     }
-
-    public function removeFromCart($cart)
-    {
-        return $cart->removeProduct($this);
-    }
 }
 ?>
-
