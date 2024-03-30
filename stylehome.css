@@ -15,14 +15,16 @@ body {
 
 
 .container {
-    max-width: 800px;
+    width: 100%;
     /*margin: 50px auto;*/
     padding: 0 20px;
+    text-align: center;
     
 }
 .footer {
     text-shadow: 1px 1px 2px rgb(235, 228, 233), 0 0 1em rgb(119, 117, 117),
     0 0 0.2em rgb(121, 96, 103);
     background-color: rgb(172, 36, 107);
+    
     }
 
