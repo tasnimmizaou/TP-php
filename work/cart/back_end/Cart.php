@@ -3,7 +3,7 @@
 class Cart
 {
     private $items = [];
-    
+
     public function getItems()
     {
         return $this->items;
@@ -34,24 +34,39 @@ class Cart
         return $totalQuantity;
     }
 
+    public function removeProductById($productId)
+    {
+        foreach ($this->items as $key => $item) {
+            if ($item->getProduct()->getId() == $productId) {
+                unset($this->items[$key]);
+                break;
+            }
+        }
+
+        $this->items = array_values($this->items);
+    }
+
     public function getTotalSum()
     {
         $totalSum = 0;
 
         foreach ($this->items as $item) {
-            $totalSum += $item->getProduct()->getPrice() * $item->getQuantity();
+            $product = $item->getProduct();
+            if ($product !== null) {
+                $totalSum += $item->getQuantity() * $product->getPrice();
+            }
         }
 
         return $totalSum;
     }
 
-    public function removeProduct($product)
+    public function isEmpty()
     {
-        $key = array_search($product, array_column($this->items, 'product'));
+        return empty($this->items);
+    }
 
-        if ($key !== false) {
-            unset($this->items[$key]);
-        }
+    public function clear()
+    {
+        $this->items = [];
     }
 }
-?>
