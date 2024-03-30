@@ -3,8 +3,8 @@
 declare (strict_types=1);
 
 //functions that manage signup errors:
-function is_input_empty( string $username, string $password){
-    if(empty($username)||empty($password) )
+function is_input_empty( string $username, string $password,string $email,string $address,$phone){
+    if(empty($username)||empty($password)||empty($email)||empty($address)||empty($phone) )
     {
         return true ;
      }else {
@@ -44,9 +44,9 @@ function is_email_registered(object $pdo , string $email)
 
     }
 
-    function create_user(object $pdo , string $username, string $password,$phone, string $email )
+    function create_user(object $pdo , string $username, string $password,$phone, string $email,string $address )
    { 
-       set_user( $pdo ,  $username,  $password,$phone,  $email);
+       set_user( $pdo ,  $username,  $password,$phone,  $email,$address);
    }
 
 
