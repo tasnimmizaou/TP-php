@@ -37,13 +37,22 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
        $_SESSION["errors_login"] = $errors;
        header("Location:../login.php");
        die();
-      } 
+      }
+      
+      //securtiy ID regeneration:
+      
+       $_SESSION["user_id"]=$result["id"];
+       $_SESSION["user_username"]= htmlspecialchars( $result["username"]);
+       $_SESSION['last_session_regenerate'] = time();
 
     
      header("Location:../login.php?login=success");
      $pdo=null;
      $stmt=null;
      die();
+
+
+       
 
 
     }catch (PDOException $e) {

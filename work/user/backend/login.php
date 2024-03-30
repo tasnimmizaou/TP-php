@@ -9,6 +9,13 @@ require_once 'includes/login_view.inc.php';
     </head>
 
     <body>
+        <p><?php
+           output_username();
+          ?> </p>
+        
+       
+
+
     <div style="max-width: 300px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
 
 <h2 style="text-align: center; margin-bottom: 20px;">Login</h2>
@@ -30,13 +37,19 @@ require_once 'includes/login_view.inc.php';
 
     <button type="submit" style="width: 100%; padding: 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; font-size: 16px; cursor: pointer;">Login</button>
 
-    <p>Don't have an account? <a href="signup.php">Sign up here</a>.</p>
+    <p>Don't have an account? <a href="signup.php " style="color: green;">Sign up here</a>.</p>
  </form>
  <?php 
       check_login_error()
     ?>
 
  </div>
+
+  <div style="text-align: center;">
+        <form action="includes/logout.inc.php" method="POST">
+            <button type="submit" style="width: 10%; padding: 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; font-size: 16px; cursor: pointer;">Logout</button>
+        </form>
+    </div>
 
     
 
