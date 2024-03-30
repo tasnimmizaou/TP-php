@@ -16,40 +16,23 @@ class CartItem
         return $this->product;
     }
 
-    public function setProduct($product)
-    {
-        $this->product = $product;
-    }
-
     public function getQuantity()
     {
         return $this->quantity;
     }
 
-    public function setQuantity($quantity)
+    public function increaseQuantity($quantity)
     {
-        $this->quantity = $quantity;
+        $this->quantity += $quantity;
     }
 
-    public function increaseQuantity($amount = 1)
+    public function decreaseQuantity()
     {
-        if ($this->product->getAvailableQuantity() >= $this->quantity + $amount) {
-            $this->quantity += $amount;
-        } else {
-            // Handle case where quantity exceeds available stock, maybe show an error message
-            // For now, we'll keep the quantity unchanged
-        }
-    }
+        $this->quantity--;
 
-    public function decreaseQuantity($amount = 1)
-    {
-        if ($this->quantity - $amount > 0) {
-            $this->quantity -= $amount;
-        } else {
-            // Handle case where quantity becomes less than 0 or 0
-            // For now, we'll keep the quantity unchanged
+        if ($this->quantity < 1) {
+            $this->quantity = 1;
         }
     }
 }
-
 ?>
