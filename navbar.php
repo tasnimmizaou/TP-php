@@ -1,4 +1,17 @@
+<!DOCTYPE><HTML>
+<style>
+  .nav-link, .d-flex, .form-control , .navbar-brand{
+    height: 100% ; 
+    width: auto; 
+    max-height: 80px;}
+  
+  
+</style>
+
 <ul class="nav nav-tabs " id="myTab" role="tablist">  
+<li class="nav-item" role="presentation">
+        <a  href="#"><img class="navbar-brand" src="src/girl2.png" alt="Logo"></a>
+    </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link active" id="home" type="button"><a href= "home.php" target="conteneur">Home 🌐</a></button>
   </li>
@@ -27,13 +40,4 @@
   </li>
  
 </ul>
-<!--
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="filtre-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="admin-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="admin-tab" tabindex="0">...</div>
-</div>
--->
+</HTML>

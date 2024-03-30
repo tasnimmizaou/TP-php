@@ -8,6 +8,7 @@
 <body>
     <h1>Welcome to our website!</h1>
     <p>Please login or sign up to continue:</p>
+    
     <ul>
         <li><a href="login.php">Login</a></li>
         <li><a href="signup.php">Sign Up</a></li>

@@ -1,8 +1,10 @@
 <?php
+
 declare (strict_types=1);
+
 //functions that manage signup errors:
-function is_input_empty( string $username, string $password,$phone, string $email){
-    if(!empty($username)||!empty($password)|| !empty($phone)||!empty($email) )
+function is_input_empty( string $username, string $password){
+    if(empty($username)||empty($password) )
     {
         return true ;
      }else {
@@ -18,9 +20,10 @@ function is_email_invalid( string $email){
      }else {
         return false ;
      }
+    }
 
 function is_username_used(object $pdo , string $username){
-    if(get_username( $pdo ,$username)) { 
+    if(get_username($pdo ,$username)) { 
         return true;
 
     }else {
@@ -28,7 +31,7 @@ function is_username_used(object $pdo , string $username){
     }
 
 }
-}
+
 
 function is_email_registered(object $pdo , string $email)
 {if (get_email($pdo ,$email ))

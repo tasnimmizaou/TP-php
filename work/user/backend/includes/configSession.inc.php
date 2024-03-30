@@ -11,7 +11,9 @@ session_set_cookie_params([
      'httponly'=>true
 
 ]);
+
 session_start();
+
 // regenration of the session ID every 30 minutes for security mesures :
   if(!isset($Session['last_session_regenerate']) )
   { 
