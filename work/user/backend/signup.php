@@ -39,6 +39,7 @@ require_once 'includes/login_model.inc.php';
             <input type="number" id="phone" name="phone" placeholder="+216 ** *** ***" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
         </div>
         <button type="submit" style="width: 100%; padding: 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; font-size: 16px; cursor: pointer;">Sign Up</button>
+        <p>Done with signing up ? go login <a href="login.php"> Login here</a>.</p>
     </form>
 
     <script>

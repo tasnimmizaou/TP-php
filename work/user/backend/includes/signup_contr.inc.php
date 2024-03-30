@@ -3,8 +3,8 @@
 declare (strict_types=1);
 
 //functions that manage signup errors:
-function is_input_empty( string $username, string $password,$phone, string $email){
-    if(empty($username)||empty($password)|| empty($phone)||empty($email) )
+function is_input_empty( string $username, string $password){
+    if(empty($username)||empty($password) )
     {
         return true ;
      }else {

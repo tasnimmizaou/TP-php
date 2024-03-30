@@ -1,38 +1,27 @@
 <?php
  declare (strict_types=1);
 
- function is_email_invalid( string $email){
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL))
-    {
-        return true ;
-     }else {
-        return false ;
-     }
-    }
- 
- function email_in_database(bool|array $result)
- {if ($result = false)
-    return false;
-    else 
-    return true;
 
-    
+ function is_input_empty(string $username,$password)
+ {
+   if(empty($username) || empty($password))
+    {return true ;}
+     else 
+    {return false ;}
+  }
+ function is_username_wrong(bool | array $result)
+ {if (!$result )
+   {return true;}
+   else 
+   {return false ;} 
+        
  }
 
  function is_password_wrong(string $password, string $hashedpassword)
  {
      if (password_verify($password, $hashedpassword))
-    return false;
-    else 
-    return true;
+        {return false;}
+        else 
+        {return true;}
  }
 
- function is_input_empty($email,$password){
-    if(empty($email)||empty($password))
-     return true ;
-    else 
-     return false ;
-
-
-
- }

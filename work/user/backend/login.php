@@ -17,8 +17,8 @@ require_once 'includes/login_view.inc.php';
 
 
     <div style="margin-bottom: 15px;">
-        <label for="email" style="display: block; font-weight: bold; margin-bottom: 5px;">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter Email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        <label for="username" style="display: block; font-weight: bold; margin-bottom: 5px;">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter Username" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
     </div>
 
     <div style="margin-bottom: 15px;">
@@ -32,12 +32,13 @@ require_once 'includes/login_view.inc.php';
 
     <p>Don't have an account? <a href="signup.php">Sign up here</a>.</p>
  </form>
+ <?php 
+      check_login_error()
+    ?>
 
  </div>
 
-    <?php 
-      check_login_error()
-    ?>
+    
 
     </body>
 

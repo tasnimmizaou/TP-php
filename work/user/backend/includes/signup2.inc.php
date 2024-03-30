@@ -43,6 +43,8 @@ if($_SERVER["REQUEST_METHOD"] ==='POST'){
                   "username"=>$username,
                   "email"=>$email,
                   "phone"=>$phone ];
+         $_SESSION['signup_data']=$signupData;
+
         header("location:../signup.php");
         die();
     }
