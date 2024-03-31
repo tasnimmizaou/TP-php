@@ -62,15 +62,17 @@ class Product
         return $this->stock;
     }
 
-    public function getImage()
-    {
-        return $this->image;
-    
+    public function getImageDataUrl() {
+        return "data:image/png;base64," . base64_encode($this->image);
     }
 
     public function addToCart(Cart $cart, $quantity = 1)
     {
         return $cart->addProduct($this, $quantity);
+    }
+
+    public function getDetailsUrl($detailsPage = 'details.php') {
+        return $detailsPage . "?id=" . $this->id;
     }
 }
 ?>

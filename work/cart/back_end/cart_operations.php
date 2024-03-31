@@ -3,6 +3,8 @@
 require_once "autoload.php";
 require_once "ConnexionBD.php"; // Include the database connection file
 require_once "retrieveprbyID.php";
+require_once "stock_product.php";
+
 
 session_start(); // Start the session after including necessary files
 
@@ -41,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Update product stock in the database
-            ConnexionBD::updateProductStock($productId, $product->getStock() - $quantity);
+            stock_product::updateProductStock($productId, $product->getStock() - $quantity);
         } else {
             // Handle error (e.g., product not found)
             echo "Product not found.";
