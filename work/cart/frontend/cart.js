@@ -34,16 +34,7 @@ function calculateTotal() {
     document.getElementById('total-price').innerText = totalPrice.toFixed(2);
 }
 
-// Event listeners for increment and decrement buttons
-['case', 'phone'].forEach(product => {
-    document.getElementById(product + '-plus').addEventListener('click', function() {
-        updateProductNumber(product, parseFloat(document.getElementById(product + '-price').innerText), true);
-    });
 
-    document.getElementById(product + '-minus').addEventListener('click', function() {
-        updateProductNumber(product, parseFloat(document.getElementById(product + '-price').innerText), false);
-    });
-});
 
 // Function to display a popup message
 function showMessage(message) {
