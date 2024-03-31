@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container">
-        <?php include 'affichage.php' ?>        
+        <?php include 'displayAll.php' ?>        
     
     </div>
 </body>

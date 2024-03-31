@@ -35,7 +35,7 @@ CREATE TABLE `article` (
   `price` float DEFAULT NULL,
   `reduction` int(11) DEFAULT NULL,
   `date_ajout` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `cathegory` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `age` varchar(255) DEFAULT NULL,
   `saison` varchar(255) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
