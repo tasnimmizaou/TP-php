@@ -35,7 +35,7 @@ CREATE TABLE `article` (
   `price` float DEFAULT NULL,
   `reduction` int(11) DEFAULT NULL,
   `date_ajout` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `cathegory` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `age` varchar(255) DEFAULT NULL,
   `saison` varchar(255) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
@@ -66,3 +66,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    userpassword VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+INSERT INTO admins (username, userpassword, email) VALUES ('admin1', '123', 'eyakhlifi2105@gmail.com');

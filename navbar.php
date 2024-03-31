@@ -16,7 +16,7 @@
     <button class="nav-link active" id="home" type="button"><a href= "home.php" target="conteneur">Home 🌐</a></button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="filtre"  type="button"><a href= "filtre.php" target="conteneur"> Filtre 📋</a></button>
+    <button class="nav-link" id="filtre"  type="button"><a href= "filtre.html" target="conteneur"> Filtre 📋</a></button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="login"  type="button"><a href= "login.php" target="conteneur">login 🔒</a> </button>
@@ -25,7 +25,7 @@
     <button class="nav-link" id="contact" type="button" ><a href= "contact.php" target="conteneur">contact us📧 </a> </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="basket" type="button"  ><a href= "basket.php" target="conteneur">my basket 🛒 </a> </button>
+    <button class="nav-link" id="basket" type="button"  ><a href= "C:\xampp2\htdocs\ecommerceTp\work\cart\back_end\cart.html" target="conteneur">my cart 🛒 </a> </button>
   </li>
   <li class="nav-item ms-auto" role="presentation">
     <form class="d-flex" action="recherche.php" method="POST">
