@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 31 mars 2024 à 00:21
+-- Généré le : dim. 31 mars 2024 à 20:39
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -36,7 +36,6 @@ CREATE TABLE `article` (
   `date_ajout` timestamp NOT NULL DEFAULT current_timestamp(),
   `cathegory` varchar(255) DEFAULT NULL,
   `age` varchar(255) DEFAULT NULL,
-  `saison` varchar(255) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `image` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -45,10 +44,10 @@ CREATE TABLE `article` (
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`id`, `name`, `description`, `price`, `reduction`, `date_ajout`, `cathegory`, `age`, `saison`, `stock`, `image`) VALUES
-(0, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:32:50', 'Enfant', 'All ages', 'All seasons', 10, NULL),
-(1, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:37:51', 'Enfant', 'All ages', 'All seasons', 10, NULL),
-(2, 'talon', 'noir pour enfants', 100, 10, '2024-03-30 22:38:43', 'Enfant', 'All ages', 'All seasons', 10, NULL);
+INSERT INTO `article` (`id`, `name`, `description`, `price`, `reduction`, `date_ajout`, `cathegory`, `age`, `stock`, `image`) VALUES
+(0, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:32:50', 'Enfant', 'All ages', 10, NULL),
+(1, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:37:51', 'Enfant', 'All ages', 98, NULL),
+(2, 'talon', 'noir pour enfants', 100, 10, '2024-03-30 22:38:43', 'Enfant', 'All ages', 50, NULL);
 
 -- --------------------------------------------------------
 
@@ -89,6 +88,22 @@ CREATE TABLE `panier` (
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `user_id`, `article_id`, `quantity`) VALUES
+(1, 1, 2, 1),
+(2, 1, 2, 1),
+(3, 1, 1, 1),
+(4, 1, 1, 1),
+(5, 1, 2, 1),
+(6, 1, 1, 1),
+(7, 1, 1, 1),
+(8, 1, 2, 1),
+(9, 1, 2, 1),
+(10, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +117,13 @@ CREATE TABLE `user` (
   `address` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `address`, `email`) VALUES
+(1, 'john_doe', 'password123', '123 Main St, Anytown, USA', 'john.doe@example.com');
 
 --
 -- Index pour les tables déchargées
@@ -162,13 +184,13 @@ ALTER TABLE `details_commande`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées

@@ -1,4 +1,5 @@
 <?php
+
 class ConnexionBD
 {
     private static $_dbname = "girlhood";
@@ -7,7 +8,7 @@ class ConnexionBD
     private static $_host = "localhost";
     private static $_bdd = null;
 
-    private function __construct()
+    public function __construct()
     {
         try {
             self::$_bdd = new PDO("mysql:host=" . self::$_host . ";dbname=" . self::$_dbname . ";charset=utf8", self::$_user, self::$_pwd, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'));
@@ -36,13 +37,5 @@ class ConnexionBD
             echo "Erreur : " . $e->getMessage();
         }
     }
-
-
-
-
-
-
 }
-
 ?>
-

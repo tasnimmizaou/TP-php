@@ -4,7 +4,7 @@ class Product
 
 
     // Constructeur
-    public function __construct( private $id,  private $name, private  $description, private $price, private $reduction,  private $dateAdded,  private $category, private  $age,  private $season,  private $stock,  private $image)
+    public function __construct( private $id,  private $name, private  $description, private $price, private $reduction,  private $dateAdded,  private $category, private  $age,   private $stock,  private $image)
     {}
     
 
@@ -55,10 +55,7 @@ class Product
         return $this->age;
     }
 
-    public function getSeason()
-    {
-        return $this->season;
-    }
+    
 
     public function getStock()
     {

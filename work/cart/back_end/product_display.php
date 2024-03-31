@@ -20,8 +20,7 @@ require_once "cart_operations.php";
 
 <section>
     <div class="container">
-        <!-- Shopping Cart Title with Icon -->
-        <h1><i class="fas fa-shopping-cart"></i> Shopping Cart</h1>
+       
 
         <!-- Display available products -->
         <h2>Products</h2>

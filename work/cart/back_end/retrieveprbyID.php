@@ -28,7 +28,6 @@ function getProductById($productId)
                 $productData['date_ajout'],
                 $productData['cathegory'],
                 $productData['age'],
-                $productData['saison'],
                 $productData['stock'],
                 $productData['image']
             );
