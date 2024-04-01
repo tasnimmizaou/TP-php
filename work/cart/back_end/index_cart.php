@@ -4,22 +4,8 @@ require_once "autoload.php";
 require_once "ConnexionBD.php";
 require_once "cart_operations.php";
 require_once "cart_manager.php"; // Inclure le fichier cart_manager.php
+require_once "add_to_cart.php";
 
-// Vérifier si le formulaire d'ajout au panier est soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
-    // Récupérer l'ID du produit à ajouter au panier depuis le formulaire
-    $productId = $_POST['product_id'];
-
-    // Récupérer le produit depuis la base de données en utilisant l'ID
-    $product = getProductById($productId);
-
-    // Vérifier si le produit existe
-    if ($product) {
-        // Ajouter le produit au panier avec une quantité de 1
-        $cartManager = new CartManager();
-        $cartManager->addProductToCart($product, 1, 1); // Le dernier paramètre est l'ID de l'utilisateur, ici 1
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 </head>
 <body>
 
+<header>
+    <div class="container">
+        <h1>Shopping Cart <i class="fas fa-shopping-cart"></i></h1>
+    </div>
+</header>
 <section>
     <div class="container">
        
@@ -42,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 
 <?php if (count($_SESSION['cart']->getItems()) === 0): ?>
     <p class="empty-cart-message">Your cart is empty!</p>
-    <form method="post" action="index.php">
+    <form method="post" action="index_cart.php">
         <button type="submit" class="btn btn-primary">Continue Shopping</button>
     </form>
 <?php else: ?>
@@ -83,8 +74,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 <!-- Total Price after Reduction -->
 <p>Total Price : $<?php echo number_format($_SESSION['cart']->getTotalPriceAfterReduction(), 2); ?></p>
 
+
+
             <!-- Place Order Form -->
-            <form method="post" action="index.php">
+            <form method="post" action="index_cart.php">
                 <button type="submit" name="place_order" class="btn btn-success">Place Order</button>
             </form>
 
@@ -97,11 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
 </section>
 
 <script src="cart.js"></script>
-<script>
-    // Function to display a popup message
-    function showMessage(message) {
-        alert(message); // Display an alert with the message
-    }
-</script>
+
 </body>
 </html>

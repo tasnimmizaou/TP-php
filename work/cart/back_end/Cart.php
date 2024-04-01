@@ -1,5 +1,5 @@
 <?php
-
+require_once "stock_product.php";
 class Cart
 {
     private $items = [];
@@ -48,7 +48,7 @@ public function removeProductById($productId)
             // Increase the stock when removing the product
             $product = $item->getProduct();
             $newStock = $product->getStock() + $item->getQuantity();
-            ConnexionBD::updateProductStock($productId, $newStock);
+            stock_product::updateProductStock($productId, $newStock);
 
             // Remove the product from the cart
             unset($this->items[$key]);
@@ -75,7 +75,7 @@ public function removeProductById($productId)
         $this->items[] = new CartItem($product, $quantity);
 
         // Update product stock in the database
-        ConnexionBD::updateProductStock($product->getId(), $product->getStock() - $quantity);
+        stock_product::updateProductStock($product->getId(), $product->getStock() - $quantity);
     }
 
    

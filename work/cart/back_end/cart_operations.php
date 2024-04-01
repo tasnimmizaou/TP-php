@@ -1,61 +1,35 @@
 <?php
 require_once "autoload.php";
-require_once "ConnexionBD.php"; // Include the database connection file
+require_once "ConnexionBD.php"; 
 require_once "retrieveprbyID.php";
 require_once "stock_product.php";
-require_once "Cart.php"; // Include the Cart class file
+require_once "Cart.php"; 
+require_once "add_to_cart.php";
+require_once "remove_from_cart.php";
 
-session_start(); // Start the session after including necessary files
+
 
 // Check if the cart session variable exists, otherwise create it
 if (!isset($_SESSION['cart'])) {
     // Set the default user_id to 1
     $user_id = 1;
+    //$user_id = determineUserId();
     $_SESSION['cart'] = new Cart($user_id);
 }
 
-// Actions to perform when a form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Add product to cart
-    if (isset($_POST['add_to_cart'])) {
-        $productId = $_POST['product_id'];
-        $quantity = $_POST['quantity'];
-        $product = getProductById($productId);
 
-        // Check if product exists before adding to cart
-        if ($product) {
-            $cart = $_SESSION['cart'];
-            $itemFound = false;
 
-            // Check if the product already exists in the cart
-            foreach ($cart->getItems() as $item) {
-                if ($item->getProduct()->getId() == $productId) {
-                    $itemFound = true;
-                    $item->setQuantity($item->getQuantity() + $quantity);
-                    break;
-                }
-            }
+//function determineUserId() {
+    // Example: Retrieve user ID from session or user authentication
+    //  let's assume the user ID is retrieved from the session
+   // if (isset($_SESSION['user_id'])) {
+       // return $_SESSION['user_id'];
+   // } else {
+        // If user ID is not available, you may return a default value or handle the scenario accordingly
+       // return null; // Return null or any default value
+   // }
+//}
 
-            if (!$itemFound) {
-                // If the product is not in the cart, add it as a new item
-                $_SESSION['cart']->addProduct($product, $quantity);
-            }
-
-            // Update product stock in the database
-            stock_product::updateProductStock($productId, $product->getStock() - $quantity);
-        } else {
-            // Handle error (e.g., product not found)
-            echo "Product not found.";
-        }
-    }
-
-    // Remove item from cart
-    if (isset($_POST['remove_from_cart'])) {
-        $productId = $_POST['product_id'];
-        $_SESSION['cart']->removeProductById($productId);
-        header("Location: index.php"); // Redirect back to the same page after removing the product
-        exit();
-    }
 
     // Place order
     if (isset($_POST['place_order'])) {
@@ -66,5 +40,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // exit();
         $orderPlacedMessage = "Your order has been placed. Thank you!";
     }
-}
+
 ?>
