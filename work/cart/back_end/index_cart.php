@@ -6,6 +6,8 @@ require_once "cart_operations.php";
 require_once "cart_manager.php"; // Inclure le fichier cart_manager.php
 require_once "add_to_cart.php";
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,13 +76,10 @@ require_once "add_to_cart.php";
 <!-- Total Price after Reduction -->
 <p>Total Price : $<?php echo number_format($_SESSION['cart']->getTotalPriceAfterReduction(), 2); ?></p>
 
-
-
             <!-- Place Order Form -->
-            <form method="post" action="index_cart.php">
+            <form method="post" action="checkout.php">
                 <button type="submit" name="place_order" class="btn btn-success">Place Order</button>
             </form>
-
 
         <!-- Order confirmation message -->
         <?php if (isset($orderPlacedMessage)): ?>
