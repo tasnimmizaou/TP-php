@@ -46,11 +46,11 @@ button{
     border:none;
 }
 
-button:hover {
+button:hover{
     opacity: .7;
 
 }
-.error {
+.error{
     background:#F2DEDE ;
     color:#A94442 ;
     padding: 10px;
