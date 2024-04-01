@@ -1,41 +1,33 @@
 <?php
 
-require_once('DatabaseConnection.php');
-require_once('Article.php');
-require_once('ArticleManager.php');
+require_once 'DatabaseConnection.php';
+require_once 'ArticleManager.php';
+require_once 'Article.php';
+// Récupérer les données JSON envoyées via la méthode POST
+$data = json_decode(file_get_contents('php://input'), true);
 
-$db = new DatabaseConnection('localhost', 'root', '', 'girlhood'); // Update credentials if needed
-$articleManager = new ArticleManager($db);
+// Vérifier si les données ont été reçues correctement
+if (isset($data['query'])) {
+  $dbConnection = new DatabaseConnection("localhost", "root","", "girlhood");
+  $articleManager = new ArticleManager($dbConnection);
+    
+  // Exécuter la requête SQL
 
-$filters = []; // Array to store filters (category, age, saison, price, name)
+    $query = $data['query'];
+    $articles = $articleManager->getArticles($query);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if (isset($_POST['category'])) {
-    $filters['category'] = $_POST['category'];
+    // Vérifier si la requête a été exécutée avec succès
+    if (!empty($articles)) {
+      // Convertir les articles en JSON pour l'envoi au client
+      echo json_encode($articles);
+  } else {
+      // En cas d'erreur ou de résultats vides
+      echo "Aucun article trouvé.";
   }
-
-  if (isset($_POST['age'])) {
-    $filters['age'] = $_POST['age'];
-  }
-
-  // Add logic to handle other filters (saison, price, name) based on their presence in $_POST
-
-  $articles = $articleManager->getAllArticles(); // Initial query
-
-  if (!empty($filters)) {
-    foreach ($filters as $filterKey => $filterValue) {
-      switch ($filterKey) {
-        case 'category':
-          $articles = $articleManager->filterBycategory($filterValue);
-          break;
-        case 'age':
-          $articles = $articleManager->filterByage($filterValue); // Implement this method in articlemanager.php
-          break;
-        case 'saison':
-          $articles = $articleManager->filterBysaison($filterValue);
-          break;
-      }
-    }
-  }
+    // Fermer la connexion
+    $dbConnection->close();
+} else {
+    // En cas de données manquantes ou incorrectes
+    echo "Données manquantes ou incorrectes";
 }
 ?>
