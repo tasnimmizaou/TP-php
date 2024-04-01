@@ -1,7 +1,7 @@
 <?php
 class ConnexionBD
 {
-    private static $_dbname = "e-commerce";
+    private static $_dbname = "girlhood";
     private static $_user = "root";
     private static $_pwd = "";
     private static $_host = "localhost";
