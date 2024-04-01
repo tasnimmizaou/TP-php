@@ -28,6 +28,8 @@ $req->execute();
                     <th>Catégorie</th>
                     <th>age</th>
                     <th>Quantité</th>
+                    <th>Image</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,6 +46,11 @@ $req->execute();
                         <td><?php echo $row['category']; ?></td>
                         <td><?php echo $row['age']; ?></td>
                         <td><?php echo $row['stock']; ?></td>
+                        <td><?php echo $row['image']; ?></td>
+                        <td>
+                            <a href="modifier.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Modifier</a>
+                            <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id']; ?>">Supprimer</button>
+                        </td>
                     </tr>
                 <?php } ?>
                 </tbody>
@@ -52,12 +59,11 @@ $req->execute();
     </div>
     <div class="row mb-3">
         <div class="col">
-            <button class="btn btn-primary mr-2" id="ajouter">Ajouter</button>
-            <button class="btn btn-warning mr-2" id="modifier">Modifier</button>
-            <button class="btn btn-danger" id="supprimer">Supprimer</button>
+            <button class="btn btn-primary mr-2 edit addButton" >Ajouter</button>
         </div>
     </div>
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="buttons.js"></script>
 </body>
 </html>
