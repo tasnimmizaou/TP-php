@@ -12,6 +12,12 @@
         input, textarea, select {
             margin-bottom: 10px;
         }
+        .editable {
+            cursor: pointer;
+        }
+        .editable:hover {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -29,40 +35,44 @@
             <form action="" method="post">
                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                 <div class="form-group">
-                    <label for="champ">Champ à modifier :</label>
-                    <select class="form-control" name="champ" id="champ">
-                        <option value="name">Nom</option>
-                        <option value="description">Description</option>
-                        <option value="reduction">Réduction</option>
-                        <option value="price">Prix</option>
-                        <option value="category">Catégorie</option>
-                        <option value="age">Âge</option>
-                        <option value="stock">Stock</option>
+                    <label>Nom :</label>
+                    <input class="editable form-control" type="text" name="name" id="name" pattern="[A-Za-z0-9\s]+" value="<?php echo $row['name']; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Description :</label>
+                    <textarea class="form-control" name="description" id="description" required><?php echo $row['description']; ?></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Prix :</label>
+                    <input type="number" class="form-control" name="price" id="price" min="0" value="<?php echo $row['price']; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label>Réduction :</label>
+                    <input type="number" class="form-control" name="reduction" id="reduction" min="0" value="<?php echo $row['reduction']; ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Catégorie :</label>
+                    <select class="form-control" name="category" id="category" required>
+                        <option <?php if ($row['category'] === 'Sportswear') echo 'selected'; ?>>Sportswear</option>
+                        <option <?php if ($row['category'] === 'Fragrances') echo 'selected'; ?>>Fragrances</option>
+                        <option <?php if ($row['category'] === 'Accessoires') echo 'selected'; ?>>Accessoires</option>
+                        <option <?php if ($row['category'] === 'Vêtements') echo 'selected'; ?>>Vêtements</option>
+                        <option <?php if ($row['category'] === 'Chaussures') echo 'selected'; ?>>Chaussures</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="nouvelle_valeur">Nouvelle valeur :</label>
-                    <?php if ($_POST['champ'] == 'name' || $_POST['champ'] == 'description'): ?>
-                        <input type="text" class="form-control" name="nouvelle_valeur" id="nouvelle_valeur" required>
-                    <?php elseif ($_POST['champ'] == 'reduction' || $_POST['champ'] == 'price' || $_POST['champ'] == 'stock'): ?>
-                        <input type="number" class="form-control" name="nouvelle_valeur" id="nouvelle_valeur" min="0" required>
-                    <?php elseif ($_POST['champ'] == 'category'): ?>
-                        <select class="form-control" name="nouvelle_valeur" id="nouvelle_valeur">
-                            <option value="Sportswear">Sportswear</option>
-                            <option value="Fragrances">Fragrances</option>
-                            <option value="Accessoires">Accessoires</option>
-                            <option value="Vetements">Vêtements</option>
-                            <option value="Chaussures">Chaussures</option>
-                        </select>
-                    <?php elseif ($_POST['champ'] == 'age'): ?>
-                        <select class="form-control" name="nouvelle_valeur" id="nouvelle_valeur">
-                            <option value="adulte">Adulte</option>
-                            <option value="enfant">Enfant</option>
-                        </select>
-                    <?php endif; ?>
+                    <label>Âge :</label>
+                    <select class="form-control" name="age" id="age" required>
+                        <option <?php if ($row['age'] === 'adulte') echo 'selected'; ?>>adulte</option>
+                        <option <?php if ($row['age'] === 'enfant') echo 'selected'; ?>>enfant</option>
+                    </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Modifier</button>
-                <a href="options.php" class="btn btn-secondary">Retour à la page de dashboard</a>
+                <div class="form-group">
+                    <label>Quantité :</label>
+                    <input type="number" class="form-control" name="stock" id="stock" min="0" value="<?php echo $row['stock']; ?>" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a href="table_dashboard.php" class="btn btn-secondary">Retour à la page de dashboard</a>
             </form>
             <?php
         } else {
@@ -71,27 +81,34 @@
     } else {
         echo "ID de l'article non spécifié.";
     }
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST['id'], $_POST['champ'], $_POST['nouvelle_valeur']) && !empty($_POST['id']) && !empty($_POST['champ']) && !empty($_POST['nouvelle_valeur'])) {
-            $article_id = $_POST['id'];
-            $champ = $_POST['champ'];
-            $nouvelle_valeur = $_POST['nouvelle_valeur'];
-
-            require_once 'autoloader.php';
-            $pdo = ConnexionBD::getInstance();
-            $req = $pdo->prepare("UPDATE article SET $champ = ? WHERE id = ?");
-            if ($req->execute([$nouvelle_valeur, $article_id])) {
-                echo "<div class='alert alert-success mt-3' role='alert'>Succès</div>";
-            } else {
-                echo "<div class='alert alert-danger mt-3' role='alert'>Erreur lors de la modification de l'article.</div>";
-            }
-        } else {
-            echo "<div class='alert alert-warning mt-3' role='alert'>Veuillez fournir toutes les données nécessaires.</div>";
-        }
-    }
     ?>
 </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['id'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['reduction'], $_POST['category'], $_POST['age'], $_POST['stock'])) {
+        $article_id = $_POST['id'];
+        $name = $_POST['name'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $reduction = $_POST['reduction'];
+        $category = $_POST['category'];
+        $age = $_POST['age'];
+        $stock = $_POST['stock'];
+
+        require_once 'autoloader.php';
+        $pdo = ConnexionBD::getInstance();
+        $req = $pdo->prepare("UPDATE article SET name = ?, description = ?, price = ?, reduction = ?, category = ?, age = ?, stock = ? WHERE id = ?");
+        if ($req->execute([$name, $description, $price, $reduction, $category, $age, $stock, $article_id])) {
+            echo "<div class='alert alert-success mt-3' role='alert'>Les modifications ont été enregistrées avec succès.</div>";
+        } else {
+            echo "<div class='alert alert-danger mt-3' role='alert'>Erreur lors de l'enregistrement des modifications.</div>";
+        }
+    } else {
+        echo "<div class='alert alert-warning mt-3' role='alert'>Veuillez fournir toutes les données nécessaires.</div>";
+    }
+}
+?>
+
 </body>
 </html>
