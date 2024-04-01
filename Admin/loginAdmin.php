@@ -20,10 +20,10 @@ if(isset($_POST['uname']) && isset($_POST['password'])) {
 
     // Check if username is empty
     if(empty($uname)) {
-        header("Location: index.php?error=Username is required");
+        header("Location: indexAdmin.php?error=Username is required");
         exit();
     } elseif (empty($pass)) { // Check if password is empty
-        header("Location: index.php?error=Password is required");
+        header("Location: indexAdmin.php?error=Password is required");
         exit();
     } else {
         // Establish database connection using ConnexionBD class
@@ -45,13 +45,13 @@ if(isset($_POST['uname']) && isset($_POST['password'])) {
             exit();
         } else {
             // Redirect with error message if user doesn't exist
-            header("Location: index.php?error=Incorrect User name or password");
+            header("Location: indexAdmin.php?error=Incorrect User name or password");
             exit();
         }
     }
 } else {
-    // Redirect if form fields are not set
-    header("Location: index.php");
+    // Redirect if form fields are not set to indexAdmin.php
+    header("Location: indexAdmin.php");
     exit();
 }
 ?>
