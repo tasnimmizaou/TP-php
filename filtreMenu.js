@@ -1,146 +1,145 @@
-function listener1(submiter, fatherr) {
-    let submitter = document.querySelector(submiter); 
+function addButton(textContent, father,fatherID, callback){
+    const button = document.createElement('button');
+    button.textContent = textContent;
+    button.classList.add('button');
+    father.appendChild(button);
+    button.addEventListener('click', function() {
+        let query = "";
+        if (fatherID === '#nouveautes'){
+            if (textContent === "All") {
+                query = "SELECT * FROM article WHERE date_ajout < DATE_SUB(NOW(), INTERVAL 3 MONTH)";
+            } else {
+                query = "SELECT * FROM article WHERE date_ajout < DATE_SUB(NOW(), INTERVAL 3 MONTH) AND age = '" + textContent + "'";
+            }
+        }
+        if (fatherID === '#soldes'){
+            if (textContent === "All") {
+                query = "SELECT * FROM article WHERE reduction != 0";
+            } else {
+                query = "SELECT * FROM article WHERE reduction != 0 AND age = '" + textContent + "'";
+            }
+        }
+        if (fatherID === '#adultes'){
+            if (textContent === "All") {
+                query = "SELECT * FROM article WHERE age = 'adulte'";
+            } else {
+                query = "SELECT * FROM article WHERE age = 'adulte' AND category = '" + textContent + "'";
+            }
+        }
+        if (fatherID === '#enfants'){
+            if (textContent === "All") {
+                query = "SELECT * FROM article WHERE age = 'enfant'";
+            } else {
+                query = "SELECT * FROM article WHERE age = 'enfant' AND category = '" + textContent + "'";
+            }
+        }
+        
+        callback(query); // Appel de la fonction de rappel avec le texte du bouton comme argument
+    });
+}
+function addCategoryButtons(buttonLabels, fatherId, callback) {
+    const father = document.querySelector(fatherId);
+    buttonLabels.forEach(label => {
+        addButton(label, father,fatherId, callback);
+        father.appendChild(document.createElement("br"));
+    });
+}
+
+function addPriceInput(father, placeHolder){
+    const priceInput = document.createElement('input');
+    priceInput.type = 'number'; 
+    priceInput.placeholder = placeHolder; 
+    priceInput.classList.add("input");
+    if (placeHolder === "Prix  Min") {
+        priceInput.value = '0';
+    }
+    father.appendChild(priceInput);
+}
+
+function listener1(submitterID, fatherID, callback) {
+    let submitter = document.querySelector(submitterID);
     let isAdded = false; // Variable de statut pour suivre si les boutons sont déjà ajoutés
     submitter.addEventListener("click", function (e) {
         e.preventDefault();
-        let father = document.querySelector(fatherr); 
-        
-        if (!isAdded) { // Vérifie si les boutons n'ont pas encore été ajoutés
-            let child1 = document.createElement('button');
-            child1.textContent = "All";
-            child1.classList.add("button");
-            let child2 = document.createElement('button');
-            child2.textContent = "Adultes";
-            child2.classList.add("button");
-            let child3 = document.createElement('button');
-            child3.textContent = "Enfants";
-            child3.classList.add("button");
-            father.appendChild(child1);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child2);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child3);
-            isAdded = true; // Met à jour la variable de statut après l'ajout des boutons
+        let father = document.querySelector(fatherID); 
+        if (!isAdded) {
+            addCategoryButtons(["All", "Adultes", "Enfants"], fatherID, callback);
+            isAdded = true;
         } else {
-            // Si les boutons sont déjà ajoutés, les supprimer
             while (father.firstChild) {
                 father.removeChild(father.firstChild);
             }
-            isAdded = false; // Met à jour la variable de statut après la suppression des boutons
+            isAdded = false;
         }
     });
 }
 
-listener1('#nouveautesbutton', '#nouveautés'); 
-const soldesdiv = '#soldes';
-listener1('#soldesbutton', soldesdiv);
-
-function listener2(submiter, fatherr) {
+function listener2(submiter,fatherID, callback) {
     let submitter = document.querySelector(submiter); 
-    let isAdded = false; // Variable de statut pour suivre si les boutons sont déjà ajoutés
+    let isAdded = false;
     submitter.addEventListener("click", function (e) {
         e.preventDefault();
-        let father = document.querySelector(fatherr); 
+        let father = document.querySelector(fatherID);
         
-        if (!isAdded) { // Vérifie si les boutons n'ont pas encore été ajoutés
-            let child0 = document.createElement('button');
-            child0.textContent = "All";
-            child0.classList.add("button");
-            
-            let child1 = document.createElement('button');
-            child1.textContent = "Fragrances";
-            child1.classList.add("button");
-
-            let child2 = document.createElement('button');
-            child2.textContent = "Make Up";
-            child2.classList.add("button");
-
-            let child3 = document.createElement('button');
-            child3.textContent = "accessoires";
-            child3.classList.add("button");
-
-            let child4 = document.createElement('button');
-            child4.textContent = "robes";
-            child4.classList.add("button");
-
-            let child5 = document.createElement('button');
-            child5.textContent = "chemises";
-            child5.classList.add("button");
-
-            let child6 = document.createElement('button');
-            child6.textContent = "Pontalons";
-            child6.classList.add("button");
-
-            let child7 = document.createElement('button');
-            child7.textContent = "Chaussures";
-            child7.classList.add("button");
-
-            let child8 = document.createElement('button');
-            child8.textContent = "Sportswear";
-            child8.classList.add("button");
-
-            father.appendChild(child1);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child2);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child3);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child4);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child5);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child6);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child7);
-            father.appendChild(document.createElement("br"));
-            father.appendChild(child8);
-            
-            isAdded = true; // Met à jour la variable de statut après l'ajout des boutons
+        if (!isAdded) {
+            addCategoryButtons(["All", "Fragrances", "Make Up", "Accessoires", "Robes", "Chemises", "Pontalons", "Chaussures", "Sportswear"], fatherID, callback);
+            isAdded = true;
         } else {
-            // Si les boutons sont déjà ajoutés, les supprimer
             while (father.firstChild) {
                 father.removeChild(father.firstChild);
             }
-            isAdded = false; // Met à jour la variable de statut après la suppression des boutons
+            isAdded = false;
         }
     });
 }
-
-listener2('#adultesbutton', '#adultes'); 
-const enfantsdiv = '#enfants';
-listener2('#enfantsbutton', enfantsdiv);
 
 function listener3(submiter, fatherr) {
     let submitter = document.querySelector(submiter);
-    let isAdded = false; // Variable de statut pour suivre si les éléments sont déjà ajoutés
+    let isAdded = false;
     submitter.addEventListener("click", function (e) {
         e.preventDefault();
         let father = document.querySelector(fatherr);
 
-        if (!isAdded) { // Vérifie si les éléments n'ont pas encore été ajoutés
-            // Création des éléments input pour les prix min et max
-            let prixMinInput = document.createElement('input');
-            prixMinInput.type = 'number'; // Type de l'input est number
-            prixMinInput.placeholder = 'Prix Min'; // Placeholder pour prix min
-            prixMinInput.value = '0'; // Valeur par défaut pour prix min
-            prixMinInput.classList.add("input"); // Ajout de classe pour le style CSS
+        if (!isAdded) {
+            addPriceInput(father,"Prix  Min" );
+            addPriceInput(father,"Prix  Max" );
 
-            let prixMaxInput = document.createElement('input');
-            prixMaxInput.type = 'number'; // Type de l'input est number
-            prixMaxInput.placeholder = 'Prix Max'; // Placeholder pour prix max
-            prixMaxInput.classList.add("input"); // Ajout de classe pour le style CSS
-
-            father.appendChild(prixMinInput); // Ajout de l'input pour prix min
-            father.appendChild(prixMaxInput); // Ajout de l'input pour prix max
-            isAdded = true; // Met à jour la variable de statut après l'ajout des éléments
+            isAdded = true;
         } else {
-            // Si les éléments sont déjà ajoutés, les supprimer
             while (father.firstChild) {
                 father.removeChild(father.firstChild);
             }
-            isAdded = false; // Met à jour la variable de statut après la suppression des éléments
+            isAdded = false;
         }
     });
 }
 
-listener3('#pricebutton', '#prix'); 
+function sendDataToPHP(query) {
+    // Envoi de la requête SQL au fichier PHP via une requête fetch
+    fetch('filtre.php', {
+        method: 'POST',
+        body: JSON.stringify({ query: query }), // Envoyer la requête SQL sous forme d'objet JSON
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors de la requête.'); // Gère les erreurs de réponse HTTP
+        }
+        return response.text(); // Convertit la réponse en texte
+    })
+    .then(data => {
+        // Faites quelque chose avec la réponse
+        console.log(data);
+    })
+    .catch(error => console.error('Error:', error.message));
+}
+
+
+listener1('#nouveautesbutton', '#nouveautes', sendDataToPHP);
+listener1('#soldesbutton', '#soldes', sendDataToPHP);
+listener2('#adultesbutton', '#adultes', sendDataToPHP);
+listener2('#enfantsbutton', '#enfants', sendDataToPHP);
+listener3('#pricebutton', '#prix');
+
