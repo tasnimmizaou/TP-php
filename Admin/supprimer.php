@@ -5,7 +5,6 @@
     <title>Supprimer un article</title>
 </head>
 <body>
-yer egvegvygfv v
 <?php
 if (isset($_POST['id']) && !empty($_POST['id'])) {
     $article_id = $_POST['id'];
@@ -26,13 +25,5 @@ if (isset($_POST['id']) && !empty($_POST['id'])) {
     echo "ID de l'article non spécifié.";
 }
 ?>
-
-<input id="button" value  ='retour a la page de dashboard' >
-<script>
-    let button = document.querySelector("#button")
-    button.addEventListener('click',function(){
-        window.location.href= 'options.php';
-    })
-</script>
 </body>
 </html>
