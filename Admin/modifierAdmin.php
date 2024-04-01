@@ -47,7 +47,7 @@
                     <input class="editable form-control" type="email" name="email" id="email" value="<?php echo $row['email']; ?>" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
-                <a href="tableAdmin.php" class="btn btn-secondary">Retour à la page de dashboard</a>
+                <a href="tableAdmin.php" class="btn btn-secondary">Retour à la page Tableau des Administrateurs</a>
             </form>
             <?php
         } else {
