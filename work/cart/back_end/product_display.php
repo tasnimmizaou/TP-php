@@ -1,6 +1,5 @@
 <?php
 
-
 require_once "autoload.php";
 require_once "ConnexionBD.php";
 require_once "cart_operations.php";

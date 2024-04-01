@@ -1,19 +1,18 @@
 <?php
-
 require_once "autoload.php";
 require_once "ConnexionBD.php"; // Include the database connection file
 require_once "retrieveprbyID.php";
 require_once "stock_product.php";
-
+require_once "Cart.php"; // Include the Cart class file
 
 session_start(); // Start the session after including necessary files
 
 // Check if the cart session variable exists, otherwise create it
 if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = new Cart();
+    // Set the default user_id to 1
+    $user_id = 1;
+    $_SESSION['cart'] = new Cart($user_id);
 }
-
-
 
 // Actions to perform when a form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
