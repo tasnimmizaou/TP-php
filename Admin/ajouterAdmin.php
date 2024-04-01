@@ -22,7 +22,7 @@
             <input class="editable form-control" type="email" name="email" id="email" required>
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
-        <a href="tableAdmin.php" class="btn btn-secondary">Retour à la page de dashboard</a>
+        <a href="tableAdmin.php" class="btn btn-secondary">Retour à la page Tableau des Administrateurs</a>
     </form>
 </div>
 <?php
