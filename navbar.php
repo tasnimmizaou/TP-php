@@ -31,7 +31,7 @@
     <form class="d-flex" action="recherche.php" method="POST">
       <div class="input-group rounded">
         <input class="form-control rounded-start" type="search" placeholder="search" aria-label="Recherche" name="search">
-        <button class="btn btn-outline-primary rounded-end" type="submit">search</button>
+        <button class="btn btn-outline-primary rounded-end" type="submit"> search</button>
       </div>
     </form>
   </li>

@@ -13,3 +13,12 @@ iframe {
     height: 100%;
     border: none;
 }
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+    margin-top: 20px; /* Espacement entre le contenu principal et le footer */
+}
