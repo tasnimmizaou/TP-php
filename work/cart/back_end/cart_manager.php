@@ -27,11 +27,9 @@ class CartManager
             $stmt = $pdo->prepare($sql);
             
             // Bind the parameters
+            $productId = $product->getId();
             $stmt->bindParam(':userId', $userId);
-            
-            $productId = $product->getId(); // Assign the return value of getId() to a variable
-            $stmt->bindParam(':productId', $productId, PDO::PARAM_INT); // Pass the variable instead
-
+            $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
             $stmt->bindParam(':quantity', $quantity);
             
             // Execute the prepared statement
@@ -87,3 +85,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     }
 }
 ?>
+

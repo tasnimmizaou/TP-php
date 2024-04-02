@@ -1,11 +1,7 @@
 <?php
 require_once "cart_operations.php";
 require_once "autoload.php";
-require_once "ConnexionBD.php"; // Include the database connection file
-
-
-
-
+require_once "ConnexionBD.php";
 
 // Function to retrieve product by ID from the database
 function getProductById($productId)
@@ -38,4 +34,5 @@ function getProductById($productId)
         echo "Erreur : " . $e->getMessage();
         return null;
     }
-}?>
+}
+?>

@@ -1,51 +1,53 @@
 <?php
+require_once "retrieveprbyID.php";
 
-require_once "autoload.php";
-require_once "ConnexionBD.php";
-require_once "cart_operations.php";
+// Array of product IDs
+$productIds = [123, 124];
+
+// Initialize an empty array to store product objects
+$products = [];
+
+// Retrieve product details for each ID
+foreach ($productIds as $productId) {
+    $product = getProductById($productId);
+    if ($product) {
+        $products[] = $product;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
-    <link href="styles.css" rel="stylesheet">
+    <title>Product Display</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<section>
-    <div class="container">
-       
-
-        <!-- Display available products -->
-        <h2>Products</h2>
-        <ul>
-        <?php foreach ([1, 2, 3] as $productId): ?>
-    <?php $product = getProductById($productId); ?>
-    <?php if ($product): ?>
-        <li>
-            <form method="post">
-                <input type="hidden" name="product_id" value="<?php echo $product->getId(); ?>">
-                <label>
-                    <?php echo $product->getName(); ?> -
-                    <?php if ($product->getStock() > 0): ?>
-                        $<?php echo $product->getPrice(); ?>
-                    <?php else: ?>
-                        Not Available
-                    <?php endif; ?>
-                </label>
-                <?php if ($product->getStock() > 0): ?>
-                    <input type="number" name="quantity" value="1" min="1">
-                    <button type="submit" name="add_to_cart">Add to Cart</button>
-                <?php endif; ?>
-            </form>
-        </li>
-    <?php endif; ?>
-<?php endforeach; ?>
-
-        </ul>
+    <div class="product-container">
+        <?php
+        // Check if there are any products to display
+        if (!empty($products)) {
+            // Loop through each product and display its details
+            foreach ($products as $product) {
+                echo "<div class='product-details'>";
+                echo "<h2>{$product->getName()}</h2>";
+                echo "<p>Description: {$product->getDescription()}</p>";
+                echo "<p>Price: {$product->getPrice()}</p>";
+                echo "<p>Stock: {$product->getStock()}</p>";
+                echo "<form action='index_cart.php' method='post'>";
+                echo "<input type='hidden' name='product_id' value='{$product->getId()}'>";
+                echo "<input type='number' name='quantity' value='1' min='1'>";
+                echo "<button type='submit' name='add_to_cart'>Add to Cart</button>";
+                echo "</form>";
+                echo "</div>";
+            }
+        } else {
+            // No products found
+            echo "No products found.";
+        }
+        ?>
+    </div>
+</body>
+</html>
