@@ -4,6 +4,7 @@ if($_SERVER["REQUEST_METHOD"] ==='POST'){
    $password = $_POST["password"];
    $email = $_POST["email"];
    $phone = $_POST["phone"];
+   $address=$_POST["address"];
    try {
    
     require_once "dbhc.inc.php";
@@ -12,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] ==='POST'){
   
     // Error Handling:
     $errors = [];
-    if (is_input_empty($username, $password, $phone, $email)) {
+    if (is_input_empty($username, $password, $phone, $email,$address)) {
       $errors["empty_input"] = "Please enter all fields !!";
     }
 
@@ -51,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] ==='POST'){
 
 
    //add the user in the data base :
-    create_user($pdo, $username, $password, $phone, $email);
+    create_user($pdo, $username, $password, $phone, $email,$address);
     $pdo = null;
     $stmt = null;
     header("location:../signup.php?signup=success");

@@ -38,6 +38,14 @@ require_once 'includes/login_model.inc.php';
             <label for="phone" style="display: block; font-weight: bold; margin-bottom: 5px;">Phone Number:</label>
             <input type="number" id="phone" name="phone" placeholder="+216 ** *** ***" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
         </div>
+        <div style="margin-bottom: 15px;">
+            <label for="address" style="display: block; font-weight: bold; margin-bottom: 5px;">Address</label>
+            <input type="text" id="address" name="address" placeholder="Enter address" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+        </div>
+
+
+
+
         <button type="submit" style="width: 100%; padding: 10px; border: none; border-radius: 5px; background-color: #007bff; color: #fff; font-size: 16px; cursor: pointer;">Sign Up</button>
         <p>Done with signing up ?  <a href="login.php" > Login here</a>.</p>
     </form>

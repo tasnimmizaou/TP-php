@@ -1,8 +1,9 @@
+
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -29,30 +30,34 @@
         button.addEventListener('click',function(){
             window.location.href="article.php";
         })
-        function openDashboard() {
-            $('#collapseTwo').collapse('show'); // Open the collapsible element with ID "collapseTwo"
-            // Redirect to the dashboard page after a short delay (500 milliseconds)
-            setTimeout(function() {
-                window.location.href = 'table_dashboard.php';
-            }, 500);
-        }
     </script>
 
     <!-- Nav Item - Clients Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+        <a class="nav-link collapsed" id="client"" data-toggle="collapse" data-target="#collapseUtilities"
            aria-expanded="true" aria-controls="collapseUtilities">
             <span>Clients</span>
         </a>
     </li>
-
+    <script>
+        let button = document.querySelector("#client");
+        button.addEventListener('click',function(){
+            window.location.href="tableClient.php";
+        })
+    </script>
     <!-- Nav Item - Admins Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+        <a class="nav-link collapsed" id="admin" data-toggle="collapse" data-target="#collapsePages"
            aria-expanded="true" aria-controls="collapsePages">
             <span>Admins</span>
         </a>
     </li>
+    <script>
+        let button = document.querySelector("#admin");
+        button.addEventListener('click',function(){
+            window.location.href="tableAdmin.php";
+        })
+    </script>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">

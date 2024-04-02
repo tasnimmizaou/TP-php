@@ -3,6 +3,7 @@
 require_once('ArticleManager.php'); // Include ArticleManager to fetch article details
 require_once('DatabaseConnection.php');
 
+
 $articleId = $_GET['id']; // Get article ID from URL parameter
 $db = new DatabaseConnection('localhost', 'root', '', 'girlhood'); // Update credentials if needed
  
@@ -111,7 +112,7 @@ button[type="submit"]:hover {
 
 
     <h2>Ajouter au panier</h2>
-  <form action="panier.php?article_id=<?= $article->id ?>" method="post"> <!-- !!panier.php?-->
+  <form action="panier.php?article_id=<?= $article->id ?>" method="post"> <!-- !!panier.php? thabt maa maryem-->
         <label for="quantity">Quantité:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="<?= $article->stock ?>" value="1" required>
         <input type="hidden" name="article_id" value="<?= $article->id ?>">

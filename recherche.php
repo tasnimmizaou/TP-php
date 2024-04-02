@@ -1,33 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styledisplay.css">
+<style>body{background-color: #FFC0CB;}</style>
+</head>
+<body>
 <?php
-// Connexion à la base de données MySQL
-$servername = "localhost";
-$username = "nom_utilisateur";
-$password = "mot_de_passe";
-$dbname = "nom_base_de_donnees";
+require_once 'DatabaseConnection.php';
+require_once 'ArticleManager.php';
+require_once 'Article.php';
+require_once 'displayArticleGrid.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$dbConnection = new DatabaseConnection("localhost", "root","", "girlhood");
+  $articleManager = new ArticleManager($dbConnection);
 
 // Récupérer la valeur de l'input du formulaire
 $search = $_POST['search'];
 
 // Requête SQL pour rechercher dans la base de données
-$sql = "SELECT * FROM table WHERE champ LIKE '%$search%'"; // Remplacez 'table' par le nom de votre table et 'champ' par le nom du champ à rechercher!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+$query= "SELECT * FROM article WHERE description LIKE '%${search}%' OR  name LIKE '%${search}%'";
 
-$result = $conn->query($sql);
+$articles = $articleManager->getArticles($query);
+displayArticleGrid($articles);
 
-// Affichage des résultats de la recherche
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        echo "ID: " . $row["id"]. " - Champ: " . $row["champ"]. "<br>";
-    }
-} else {
-    echo "Aucun résultat trouvé";
-}
-
-$conn->close();
+$dbConnection->close();
 ?>
+</body>
+</html>
