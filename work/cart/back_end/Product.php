@@ -1,27 +1,14 @@
 <?php
 class Product
 {
-    private $id;
-    private $name;
-    private $size;
-    private $color;
-    private $price;
-    private $category;
-    private $stock;
-    private $reduction; // Ajout de l'attribut réduction
 
-    public function __construct($id, $name, $size, $color, $price, $category, $stock, $reduction = 0) // Ajout du paramètre $reduction avec une valeur par défaut de 0
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->size = $size;
-        $this->color = $color;
-        $this->price = $price;
-        $this->category = $category;
-        $this->stock = $stock;
-        $this->reduction = $reduction; // Initialisation de l'attribut réduction
-    }
 
+    // Constructeur
+    public function __construct( private $id,  private $name, private  $description, private $price, private $reduction,  private $dateAdded,  private $category, private  $age,   private $stock,  private $image)
+    {}
+    
+
+    // Getters
     public function getId()
     {
         return $this->id;
@@ -32,14 +19,53 @@ class Product
         return $this->name;
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
     public function getPrice()
     {
         return $this->price;
     }
 
-    public function getReduction() // Méthode pour récupérer la réduction
+    public function getTotalPriceAfterReduction($quantity) {
+        $originalPrice = $this->price * $quantity;
+        $reducedPrice = $originalPrice * (1 - ($this->reduction / 100));
+        return $reducedPrice;
+    }
+
+    public function getReduction()
     {
         return $this->reduction;
+    }
+
+    public function getDateAdded()
+    {
+        return $this->dateAdded;
+    }
+
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    
+
+    public function getStock()
+    {
+        return $this->stock;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    
     }
 
     public function addToCart(Cart $cart, $quantity = 1)

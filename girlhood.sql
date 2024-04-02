@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 29 mars 2024 à 14:27
+-- Généré le :  sam. 30 mars 2024 à 19:55
 -- Version du serveur :  10.1.30-MariaDB
 -- Version de PHP :  7.2.1
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `article`
+-- Base de données :  `girlhood`
 --
 
 -- --------------------------------------------------------
@@ -30,13 +30,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `article` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) COLLATE armscii8_bin DEFAULT NULL,
-  `size` varchar(20) COLLATE armscii8_bin DEFAULT NULL,
-  `color` varchar(20) COLLATE armscii8_bin DEFAULT NULL,
-  `price` decimal(10,2) DEFAULT NULL,
-  `category` varchar(50) COLLATE armscii8_bin DEFAULT NULL,
-  `stock` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+  `name` varchar(255) DEFAULT NULL,
+  `description` text,
+  `price` float DEFAULT NULL,
+  `reduction` int(11) DEFAULT NULL,
+  `date_ajout` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `category` varchar(255) DEFAULT NULL,
+  `age` varchar(255) DEFAULT NULL,
+  `saison` varchar(255) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `image` longblob
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Index pour les tables déchargées
@@ -62,3 +66,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    userpassword VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+INSERT INTO admins (username, userpassword, email) VALUES ('admin1', '123', 'eyakhlifi2105@gmail.com');
