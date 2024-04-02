@@ -48,6 +48,8 @@
                                     <td><?php echo $row['email']; ?></td>
                                     <td>
                                         <a href="modifierClient.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Modifier</a>
+                                    </td>
+                                    <td>
                                         <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id']; ?>">Supprimer</button>
                                     </td>
                                 </tr>
