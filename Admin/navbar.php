@@ -58,7 +58,18 @@
             window.location.href="tableAdmin.php";
         })
     </script>
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" id="commande" data-toggle="collapse" data-target="#collapsePages"
+           aria-expanded="true" aria-controls="collapsePages">
+            <span>Commandes</span>
+        </a>
+    </li>
+    <script>
+        let button = document.querySelector("#commande");
+        button.addEventListener('click',function(){
+            window.location.href="tableCommande.php";
+        })
+    </script>
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
