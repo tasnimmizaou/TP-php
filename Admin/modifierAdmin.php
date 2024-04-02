@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier un admin</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input, textarea, select {
-            margin-bottom: 10px;
-        }
-        .editable {
-            cursor: pointer;
-        }
-        .editable:hover {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
+
+<?php include('header.php'); include('navbar.php'); ?>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+<div class="container-fluid">
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
         $admin_id = $_GET['id'];
@@ -58,7 +40,6 @@
     }
     ?>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['id'], $_POST['username'], $_POST['userpassword'], $_POST['email'])) {
@@ -70,15 +51,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo = ConnexionBD::getInstance();
         $req = $pdo->prepare("UPDATE admins SET username = ?, userpassword = ?, email = ? WHERE id = ?");
         if ($req->execute([$username, $userpassword, $email, $admin_id])) {
-            echo "<div class='alert alert-success mt-3' role='alert'>Les modifications ont été enregistrées avec succès.</div>";
+            $_SESSION['success']="Les modifications ont été enregistrées avec succès.";
+            header('location: tableAdmin.php');
         } else {
-            echo "<div class='alert alert-danger mt-3' role='alert'>Erreur lors de l'enregistrement des modifications.</div>";
-        }
+            $_SESSION['status']="Erreur lors de l'enregistrement des modifications.";        }
     } else {
-        echo "<div class='alert alert-warning mt-3' role='alert'>Veuillez fournir toutes les données nécessaires.</div>";
+        $_SESSION['status']="Veuillez fournir toutes les données nécessaires";
     }
 }
 ?>
 
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
 </body>
+<?php include("footer.php"); include("scripts.php");?>
 </html>
