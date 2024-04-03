@@ -17,60 +17,30 @@
         Interface
     </div>
 
-    <!-- Nav Item - Articles Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="article" data-toggle="collapse" data-target="#collapseArticles"
-           aria-expanded="true" aria-controls="collapseArticles">
+        <a class="nav-link " href="article.php">
             <span>Articles</span>
         </a>
     </li>
-    <script>
-        let articleButton = document.querySelector("#article");
-        articleButton.addEventListener('click',function(){
-            window.location.href="article.php";
-        })
-    </script>
 
-    <!-- Nav Item - Clients Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="client" data-toggle="collapse" data-target="#collapseClients"
-           aria-expanded="true" aria-controls="collapseClients">
+        <a class="nav-link " href="tableClient.php">
             <span>Clients</span>
         </a>
     </li>
-    <script>
-        let clientButton = document.querySelector("#client");
-        clientButton.addEventListener('click',function(){
-            window.location.href="tableClient.php";
-        })
-    </script>
 
     <!-- Nav Item - Admins Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="admin" data-toggle="collapse" data-target="#collapseAdmins"
-           aria-expanded="true" aria-controls="collapseAdmins">
+        <a class="nav-link"  href="tableAdmin.php">
             <span>Admins</span>
         </a>
     </li>
-    <script>
-        let adminButton = document.querySelector("#admin");
-        adminButton.addEventListener('click',function(){
-            window.location.href="tableAdmin.php";
-        })
-    </script>
-        <!-- Nav Item - Commands Collapse Menu -->
-        <li class="nav-item">
-        <a class="nav-link collapsed" id="commands" data-toggle="collapse" data-target="#collapseCommands"
-           aria-expanded="true" aria-controls="collapseCommands">
+    <!-- Nav Item - Commands Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link " href="tableCommande.php">
             <span>Commands</span>
         </a>
     </li>
-    <script>
-        let commandsButton = document.querySelector("#commands");
-        commandsButton.addEventListener('click',function(){
-            window.location.href="tableCommande.php";
-        })
-    </script>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
@@ -89,11 +59,7 @@
     </div>
 
     <!-- Sidebar Message -->
-    <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-    </div>
+
 
 </ul>
 <!-- End of Sidebar -->
