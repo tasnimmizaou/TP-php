@@ -1,4 +1,3 @@
-
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -20,56 +19,59 @@
 
     <!-- Nav Item - Articles Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="article" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" id="article" data-toggle="collapse" data-target="#collapseArticles"
+           aria-expanded="true" aria-controls="collapseArticles">
             <span>Articles</span>
         </a>
     </li>
     <script>
-        let button = document.querySelector("#article");
-        button.addEventListener('click',function(){
+        let articleButton = document.querySelector("#article");
+        articleButton.addEventListener('click',function(){
             window.location.href="article.php";
         })
     </script>
 
     <!-- Nav Item - Clients Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="client"" data-toggle="collapse" data-target="#collapseUtilities"
-           aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link collapsed" id="client" data-toggle="collapse" data-target="#collapseClients"
+           aria-expanded="true" aria-controls="collapseClients">
             <span>Clients</span>
         </a>
     </li>
     <script>
-        let button = document.querySelector("#client");
-        button.addEventListener('click',function(){
+        let clientButton = document.querySelector("#client");
+        clientButton.addEventListener('click',function(){
             window.location.href="tableClient.php";
         })
     </script>
+
     <!-- Nav Item - Admins Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="admin" data-toggle="collapse" data-target="#collapsePages"
-           aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" id="admin" data-toggle="collapse" data-target="#collapseAdmins"
+           aria-expanded="true" aria-controls="collapseAdmins">
             <span>Admins</span>
         </a>
     </li>
     <script>
-        let button = document.querySelector("#admin");
-        button.addEventListener('click',function(){
+        let adminButton = document.querySelector("#admin");
+        adminButton.addEventListener('click',function(){
             window.location.href="tableAdmin.php";
         })
     </script>
-    <li class="nav-item">
-        <a class="nav-link collapsed" id="commande" data-toggle="collapse" data-target="#collapsePages"
-           aria-expanded="true" aria-controls="collapsePages">
-            <span>Commandes</span>
+        <!-- Nav Item - Commands Collapse Menu -->
+        <li class="nav-item">
+        <a class="nav-link collapsed" id="commands" data-toggle="collapse" data-target="#collapseCommands"
+           aria-expanded="true" aria-controls="collapseCommands">
+            <span>Commands</span>
         </a>
     </li>
     <script>
-        let button = document.querySelector("#commande");
-        button.addEventListener('click',function(){
+        let commandsButton = document.querySelector("#commands");
+        commandsButton.addEventListener('click',function(){
             window.location.href="tableCommande.php";
         })
     </script>
+
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
