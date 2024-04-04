@@ -1,8 +1,5 @@
 
-<?php include('header.php'); include('navbar.php'); ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
 <div class="container-fluid">
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -52,18 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $req = $pdo->prepare("UPDATE admins SET username = ?, userpassword = ?, email = ? WHERE id = ?");
         if ($req->execute([$username, $userpassword, $email, $admin_id])) {
             $_SESSION['success']="Les modifications ont été enregistrées avec succès.";
-            header('location: tableAdmin.php');
         } else {
             $_SESSION['status']="Erreur lors de l'enregistrement des modifications.";        }
     } else {
         $_SESSION['status']="Veuillez fournir toutes les données nécessaires";
     }
 }
-?>
+include("footer.php"); include("scripts.php");?>
 
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-</body>
-<?php include("footer.php"); include("scripts.php");?>
-</html>
