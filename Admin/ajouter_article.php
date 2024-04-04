@@ -46,7 +46,7 @@
             <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
-        <a href="article.php" class="btn btn-secondary">Retour à la page de dashboard</a>
+        <a href="tableArticle.php" class="btn btn-secondary">Retour à la page de dashboard</a>
     </form>
 </div>
 <?php
