@@ -1,19 +1,18 @@
 <?php
 
-require_once('ArticleManager.php'); // Include ArticleManager to fetch article details
-require_once('DatabaseConnection.php');
-
+require_once('ArticleManager.php');
 
 $articleId = $_GET['id']; // Get article ID from URL parameter
-$db = new DatabaseConnection('localhost', 'root', '', 'girlhood'); // Update credentials if needed
- 
-$articleManager = new ArticleManager( $db); // Create ArticleManager instance
-$article = $articleManager->getarticlebyid($articleId); // Fetch article details
+$articleManager = new ArticleManager(); // Create ArticleManager instance
+$articles = $articleManager->getarticlebyid($articleId); // Fetch article details
 
-if (!$article) {
+if (empty($articles)) {
     // Handle error if article not found
     die("Article not found");
 }
+
+$article = $articles[0]; // Get the first article from the array
+
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +24,6 @@ if (!$article) {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /*background-color: #f2f2f2;*/
 }
 
 .container {
@@ -112,7 +110,7 @@ button[type="submit"]:hover {
 
 
     <h2>Ajouter au panier</h2>
-  <form action="panier.php?article_id=<?= $article->id ?>" method="post"> <!-- !!panier.php? thabt maa maryem-->
+  <form action="add_to_cart.php?article_id=<?= $article->id ?>" method="post"> 
         <label for="quantity">Quantité:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="<?= $article->stock ?>" value="1" required>
         <input type="hidden" name="article_id" value="<?= $article->id ?>">
@@ -120,6 +118,6 @@ button[type="submit"]:hover {
     </form>
 
     </div>
-    
+
 </body>
 </html>

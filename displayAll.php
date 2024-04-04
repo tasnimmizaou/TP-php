@@ -10,14 +10,17 @@ require_once('DatabaseConnection.php');
 require_once('Article.php');
 require_once('ArticleManager.php');
 require('displayArticleGrid.php');
+// Create an instance of ArticleManager
+$articleManager = new ArticleManager();
 
-$db = new DatabaseConnection('localhost', 'root', '', 'girlhood'); // Update credentials if needed
-$articleManager = new ArticleManager($db);
+// Define your SQL query
+$sql = "SELECT * FROM article";
 
-$articles = $articleManager->getAllArticles();
+// Fetch articles using the query and ArticleManager
+$articles = $articleManager->getArticles($sql);
+
+// Display articles using displayArticleGrid function
 displayArticleGrid($articles);
-
-$db->close();
 ?>
 </body>
 </html>

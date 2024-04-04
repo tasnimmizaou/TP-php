@@ -9,16 +9,14 @@
 
 
 require_once('ArticleManager.php');
-require_once('DatabaseConnection.php');
-require_once('Article.php');
+require_once('connexionBD.php');
 require_once('displayArticleGrid.php');
 
-$db = new DatabaseConnection('localhost', 'root', '', 'girlhood');
+$connexion = new ConnexionBD();
 
-$articleManager = new ArticleManager($db);
+$articleManager = new ArticleManager($connexion);// CréeR une instance de ConnexionBD
 
-// Traitement du formulaire de filtre par catégorie
-
+// Traitement du formulaire de filtre:
 if(isset($_POST['order'])) {
     $order = $_POST['order'];
     if ($order === "Nouveautés") {
@@ -53,7 +51,6 @@ if(isset($_POST['action']) && $_POST['action'] === 'price_filter') {
     echo '<script>alert("Aucun résultat trouvé dans cette plage de prix")</script>';
 }
 }
-$db->close();
 ?>
 </body>
 </html>
