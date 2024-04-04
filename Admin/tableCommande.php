@@ -21,6 +21,7 @@ include('header.php');
                     <th>Commande ID</th>
                     <th>Date Commande</th>
                     <th>User ID</th>
+                    <th>Total Price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@ include('header.php');
                         <td><?php echo $row['id']; ?></td>
                         <td><?php echo $row['date_commande']; ?></td>
                         <td><?php echo $row['user_id']; ?></td>
+                        <td><?php echo $row['total_price']; ?></td>
 
                         <td>
                             <a href="viewDetails.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">View_Details</a>
