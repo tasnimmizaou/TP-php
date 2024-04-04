@@ -227,4 +227,5 @@ CREATE TABLE admins (
     email VARCHAR(255) NOT NULL
 );
 INSERT INTO admins (username, userpassword, email) VALUES ('admin1', '123', 'eyakhlifi2105@gmail.com');
+ALTER TABLE `commande` ADD `total_price` FLOAT NOT NULL AFTER `date_commande`;
 
