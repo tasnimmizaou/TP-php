@@ -1,8 +1,5 @@
 
-<?php include('header.php'); include('navbar.php'); ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
 <div class="container-fluid">
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -44,7 +41,6 @@
     }
     ?>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['id'], $_POST['username'], $_POST['password'], $_POST['address'] , $_POST['email'])) {
@@ -58,7 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $req = $pdo->prepare("UPDATE user SET username = ?, password = ?, address = ? , email = ? WHERE id = ?");
         if ($req->execute([$username, $password,$address, $email, $client_id])) {
             $_SESSION['success']="Les modifications ont été enregistrées avec succès.";
-            header('location: tableClient.php');
         } else {
             $_SESSION['status']="Erreur lors de l'enregistrement des modifications.";
         }
@@ -67,9 +62,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-</body>
 <?php include("footer.php"); include("scripts.php");?>
-</html>
