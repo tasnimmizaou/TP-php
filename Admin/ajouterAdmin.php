@@ -1,7 +1,4 @@
-<?php include('header.php'); include('navbar.php'); ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
 <div class="container-fluid">
     <h2 class="mt-5 mb-4">Ajouter un admin</h2>
     <form action="" method="post" enctype="multipart/form-data"> <!-- Ajout de enctype pour gérer les fichiers -->
@@ -34,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($req->execute([$username, $userpassword, $email])) {
             $_SESSION['success']="Admin ajoute avec succes";
-            header('location: tableAdmin.php');
         } else {
             $_SESSION['status']="Admin non ajouté";
         }
@@ -43,11 +39,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
 }
-?>
+include("footer.php"); include("scripts.php");?>
 
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-</body>
-<?php include("footer.php"); include("scripts.php");?>
-</html>
