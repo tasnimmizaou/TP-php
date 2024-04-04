@@ -58,7 +58,7 @@ include('navbar.php');include('logout model.php');
                     <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
-                <a href="article.php" class="btn btn-secondary">Retour à la page de dashboard</a>
+                <a href="tableArticle.php" class="btn btn-secondary">Retour à la page de dashboard</a>
             </form>
             <?php
         } else {
