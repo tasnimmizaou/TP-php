@@ -1,11 +1,7 @@
 
-<?php  include('header.php')?>
-<?php include ("navbar.php") ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-<?php include('logout model.php');?>
+<?php  include('header.php');
+ include ("navbar.php") ;
+ include('logout model.php');?>
 
 
 <div id="content-wrapper" class="d-flex flex-column">
@@ -15,7 +11,6 @@
         <?php include 'nav.php' ?>
 
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Clients</h1>
             <?php
             require_once 'autoloader.php';
             $pdo = ConnexionBD::getInstance();
@@ -23,7 +18,6 @@
             $req->execute();
             ?>
             <div class="container">
-                <h2 class="mt-3 mb-4">Tableau de </h2>
                 <div class="row">
                     <div class="col">
                         <table class="table table-bordered table-hover">
@@ -73,13 +67,4 @@
 
 </div>
 
-
-</div>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-
-
-</body>
 <?php include("footer.php"); include("scripts.php");?>
-</html>
