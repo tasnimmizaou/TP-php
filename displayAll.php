@@ -6,8 +6,8 @@
 <body>
 <?php
 
-require_once('DatabaseConnection.php');
-require_once('Article.php');
+require_once('connexionBD.php');
+require_once('Product.php');
 require_once('ArticleManager.php');
 require('displayArticleGrid.php');
 // Create an instance of ArticleManager

@@ -6,7 +6,6 @@ class Product
     // Constructeur
     public function __construct( private $id,  private $name, private  $description, private $price, private $reduction,  private $dateAdded,  private $category, private  $age,   private $stock,  private $image);
     {}
-    
 
     // Getters
     public function getId()
@@ -28,11 +27,22 @@ class Product
     {
         return $this->price;
     }
+    
+    public function getDetailsUrl($detailsPage = 'details.php') {
+        return $detailsPage . "?id=" . $this->id;
+    }
+    
+    public function getImageDataUrl() {
+        return "data:image/png;base64," . base64_encode($this->image);
+    }
 
     public function getTotalPriceAfterReduction($quantity) {
         $originalPrice = $this->price * $quantity;
         $reducedPrice = $originalPrice * (1 - ($this->reduction / 100));
         return $reducedPrice;
+    }
+    public function getFormattedPrice() {
+        return number_format($this->price, 2) . " dt"; // Assuming dt is the currency symbol
     }
 
     public function getReduction()

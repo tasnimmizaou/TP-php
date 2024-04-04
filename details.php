@@ -114,7 +114,7 @@ button[type="submit"]:hover {
         <label for="quantity">Quantité:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="<?= $article->stock ?>" value="1" required>
         <input type="hidden" name="article_id" value="<?= $article->id ?>">
-        <button type="submit">Ajouter au panier</button>
+        <button type="submit" action ="add_to_cart.php">Ajouter au panier</button>
     </form>
 
     </div>
