@@ -1,7 +1,5 @@
-<?php include('header.php'); include('navbar.php'); ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
+
 <div class="container-fluid">
     <h2 class="mt-5 mb-4">Ajouter un client</h2>
     <form action="" method="post" enctype="multipart/form-data"> <!-- Ajout de enctype pour gérer les fichiers -->
@@ -37,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $req = $pdo->prepare("INSERT INTO user (username, password, address, email) VALUES (?, ?, ?, ?)");
         if ($req->execute([$username, $password, $address, $email])) {
             $_SESSION['success']="Client ajoute avec succes";
-            header('location: tableClient.php');
         } else {
             $_SESSION['status']="client non ajouté";
         }
@@ -48,9 +45,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-</body>
 <?php include("footer.php"); include("scripts.php");?>
-</html>
+
