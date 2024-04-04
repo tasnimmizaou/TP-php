@@ -14,7 +14,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link " href="article.php">
+        <a class="nav-link " href="tableArticle.php">
             <span>Articles</span>
         </a>
     </li>
