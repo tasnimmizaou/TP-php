@@ -1,7 +1,8 @@
-<?php include('header.php'); include('navbar.php'); ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+<?php
+include('header.php');
+include('navbar.php');include('logout model.php');
+?>
+
 <div class="container-fluid">
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
@@ -13,7 +14,7 @@
         if ($row = $req->fetch(PDO::FETCH_ASSOC)) {
             ?>
             <h2 class="mt-5 mb-4">Modifier l'article</h2>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                 <div class="form-group">
                     <label>Nom :</label>
@@ -52,9 +53,9 @@
                     <label>Quantité :</label>
                     <input type="number" class="form-control" name="stock" id="stock" min="0" value="<?php echo $row['stock']; ?>" required>
                 </div>
-                <div class ="form-group">
+                <div class="form-group">
                     <label for="image">Image :</label>
-                    <input type="file" class="form-control-file" name="image" id="image">
+                    <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <a href="article.php" class="btn btn-secondary">Retour à la page de dashboard</a>
@@ -68,9 +69,10 @@
     }
     ?>
 </div>
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['id'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['reduction'], $_POST['category'], $_POST['age'], $_POST['stock'])) {
+    if (isset($_POST['id'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['reduction'], $_POST['category'], $_POST['age'], $_POST['stock'], $_FILES['image'])) {
         $article_id = $_POST['id'];
         $name = $_POST['name'];
         $description = $_POST['description'];
@@ -79,13 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $category = $_POST['category'];
         $age = $_POST['age'];
         $stock = $_POST['stock'];
+        $image_path = $_FILES['image']['tmp_name'];
+        $imageData = file_get_contents($image_path);
 
         require_once 'autoloader.php';
         $pdo = ConnexionBD::getInstance();
-        $req = $pdo->prepare("UPDATE article SET name = ?, description = ?, price = ?, reduction = ?, category = ?, age = ?, stock = ? WHERE id = ?");
-        if ($req->execute([$name, $description, $price, $reduction, $category, $age, $stock, $article_id])) {
-            $_SESSION['success']="Article modifie avec succes";
-            header('location: article.php');
+        $req = $pdo->prepare("UPDATE article SET name = ?, description = ?, price = ?, reduction = ?, category = ?, age = ?, stock = ?, image = ? WHERE id = ?");
+        if ($req->execute([$name, $description, $price, $reduction, $category, $age, $stock, $imageData, $article_id])) {
+            $_SESSION['success']="Article modifié avec succès";
         } else {
             $_SESSION['status']="Article non modifié";
         }
@@ -93,10 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['status']="Veuillez fournir toutes les données nécessaires";
     }
 }
+
+include("footer.php");
+include("scripts.php");
 ?>
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
-</body>
-<?php include("footer.php"); include("scripts.php");?>
-</html>
