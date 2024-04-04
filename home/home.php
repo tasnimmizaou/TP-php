@@ -19,7 +19,7 @@
 <footer style="text-align: center; font-size: 14px; color: #888;">
     <span>&copy; Copyright - 2024</span>
     <span style="margin: 0 10px;">|</span>
-    <span><a href="contact.php" style="color: #0366d6; text-decoration: none;">Any questions? Contact us!</a></span>
+    <span><a href="contact/index.php" style="color: #0366d6; text-decoration: none;">Any questions? Contact us!</a></span>
 </footer>
 
 </html>
