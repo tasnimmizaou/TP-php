@@ -34,7 +34,7 @@ CREATE TABLE `article` (
   `price` float DEFAULT NULL,
   `reduction` int(11) DEFAULT NULL,
   `date_ajout` timestamp NOT NULL DEFAULT current_timestamp(),
-  `cathegory` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `age` varchar(255) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
   `image` longblob DEFAULT NULL
@@ -44,7 +44,7 @@ CREATE TABLE `article` (
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`id`, `name`, `description`, `price`, `reduction`, `date_ajout`, `cathegory`, `age`, `stock`, `image`) VALUES
+INSERT INTO `article` (`id`, `name`, `description`, `price`, `reduction`, `date_ajout`, `category`, `age`, `stock`, `image`) VALUES
 (0, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:32:50', 'Enfant', 'All ages', 10, NULL),
 (1, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:37:51', 'Enfant', 'All ages', 98, NULL),
 (2, 'talon', 'noir pour enfants', 100, 10, '2024-03-30 22:38:43', 'Enfant', 'All ages', 50, NULL);
