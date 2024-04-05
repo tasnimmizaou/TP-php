@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="styledisplay.css">
+  <link rel="stylesheet" href="../affichage/styledisplay.css">
 </head>
 <body>
   
 <?php
 
 
-require_once('ArticleManager.php');
-require_once('connexionBD.php');
-require_once('displayArticleGrid.php');
+require_once('../commun/ArticleManager.php');
+require_once('../commun/connexionBD.php');
+require_once('../affichage/displayArticleGrid.php');
 
 $connexion = new ConnexionBD();
 
