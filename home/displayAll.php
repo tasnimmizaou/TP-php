@@ -6,6 +6,7 @@
 <body>
 <?php
 
+require_once('connexionBD.php');
 require_once('Product.php');
 require_once('ArticleManager.php');
 require('displayArticleGrid.php');
