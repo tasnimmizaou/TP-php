@@ -7,10 +7,10 @@
 </head>
 <body>
 <?php
-require_once 'DatabaseConnection.php';
-require_once 'ArticleManager.php';
-require_once 'Article.php';
-require_once 'displayArticleGrid.php';
+require_once '../commun/connexionBD.php';
+require_once '../commun/ArticleManager.php';
+require_once '../commun/Product.php';
+require_once '../affichage/displayArticleGrid.php';
 
 $dbConnection = new DatabaseConnection("localhost", "root","", "girlhood");
   $articleManager = new ArticleManager($dbConnection);
