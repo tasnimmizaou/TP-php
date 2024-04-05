@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <script src="buttonsAdmin.js"></script>
+            <script src="buttonsClient.js"></script>
         </div>
 
 
