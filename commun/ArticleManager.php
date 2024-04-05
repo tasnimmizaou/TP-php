@@ -1,6 +1,6 @@
 <?php
 require_once('Poduct.php');
-require_once('ConnexionBD.php');
+require_once('../commun/ConnexionBD.php');
 
 
 class ArticleManager {
