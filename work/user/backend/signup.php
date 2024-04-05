@@ -87,7 +87,7 @@ require_once 'includes/login_model.inc.php';
 
         <div>
             <label for="phone">Phone Number:</label>
-            <input type="text" id="phone" name="phone" placeholder="+216 ** *** ***">
+            <input type="tel" id="phone" name="phone" placeholder="+216 ** *** ***">
         </div>
 
         <div>

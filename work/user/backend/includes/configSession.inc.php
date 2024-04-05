@@ -27,11 +27,6 @@ session_start();
     }
 
    
-
-  
-
-
-
   function regenerate_session_id()
   {
     session_regenerate_id(true);
