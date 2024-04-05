@@ -28,7 +28,7 @@
     <button class="nav-link" id="basket" type="button"  ><a href= "work\cart\back_end\index_cart.php" target="conteneur">my cart 🛒 </a> </button>
   </li>
   <li class="nav-item ms-auto" role="presentation">
-    <form class="d-flex" action="recherche.php" method="POST">
+    <form class="d-flex" action="recherche/recherche.php" method="POST">
       <div class="input-group rounded">
         <input class="form-control rounded-start" type="search" placeholder="search" aria-label="Recherche" name="search">
         <button class="btn btn-outline-primary rounded-end" type="submit"> search</button>
