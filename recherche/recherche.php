@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="styledisplay.css">
+<link rel="stylesheet" href="../affichage/styledisplay.css">
 <style>body{background-color: #FFC0CB;}</style>
 </head>
 <body>
