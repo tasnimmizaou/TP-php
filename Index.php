@@ -12,7 +12,7 @@
 <?php  include 'navbar.php'?>
 
 <article id="frame" frameborder="0" >
-    <iframe src="home.php" frameborder="0"
+    <iframe src="home/home.php" frameborder="0"
             name="conteneur" width="device-width" >
         </iframe>
     </article>
