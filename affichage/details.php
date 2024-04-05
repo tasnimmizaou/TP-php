@@ -1,6 +1,7 @@
 <?php
 
-require_once('ArticleManager.php');
+require_once('../commun/ArticleManager.php');
+require_once('../commun/Product.php');
 
 $articleId = $_GET['id']; // Get article ID from URL parameter
 $articleManager = new ArticleManager(); // Create ArticleManager instance
