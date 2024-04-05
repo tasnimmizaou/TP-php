@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="ecommerceTP\affichage\styledisplay.css">
+  <link rel="stylesheet" href="..\affichage\styledisplay.css">
 </head>
 <body>
 <?php
