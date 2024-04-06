@@ -1,5 +1,5 @@
 <?php
-require_once('Poduct.php');
+require_once('Product.php');
 require_once('../commun/ConnexionBD.php');
 
 
@@ -23,7 +23,7 @@ class ArticleManager {
             
             $articles = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $articles[] = new Article($row);
+                $articles[] = new Product($row);
             }
             
             return $articles;

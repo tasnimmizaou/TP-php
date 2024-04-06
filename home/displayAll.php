@@ -8,7 +8,7 @@
 
 require_once('..\commun\connexionBD.php');
 require_once('..\commun\Product.php');
-require_once('...\commun\ArticleManager.php');
+require_once('..\commun\ArticleManager.php');
 require('..\affichage\displayArticleGrid.php');
 // Create an instance of ArticleManager
 $articleManager = new ArticleManager();
