@@ -1,12 +1,12 @@
-$(document).ready(function(){
-    $('#checkoutBtn').click(function(){
-        $.ajax({
-            url: 'logout.php',
-            type: 'POST',
-            success: function(response){
-                // Rediriger vers la page de connexion ou une autre page
-                window.location.href = 'login.php';
-            }
-        });
+// checkout.js
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Select the checkout button
+    var checkoutBtn = document.getElementById("checkoutBtn");
+
+    // Add click event listener to the button
+    checkoutBtn.addEventListener("click", function() {
+        // Redirect to payer.php when the button is clicked
+        window.location.href = "payer.php";
     });
 });

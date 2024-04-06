@@ -68,7 +68,7 @@ class Product
     
     }
 
-    public function addToCart(Cart $cart, $quantity = 1)
+    public function addToCart(Cart $cart, $quantity )
     {
         return $cart->addProduct($this, $quantity);
     }

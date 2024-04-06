@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 31 mars 2024 à 20:39
+-- Généré le : ven. 05 avr. 2024 à 14:45
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `girlhood`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `admins`
+--
+
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `userpassword` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -45,9 +58,8 @@ CREATE TABLE `article` (
 --
 
 INSERT INTO `article` (`id`, `name`, `description`, `price`, `reduction`, `date_ajout`, `cathegory`, `age`, `stock`, `image`) VALUES
-(0, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:32:50', 'Enfant', 'All ages', 10, NULL),
-(1, 'Pantalon', 'Pantalon noir pour enfants', 100, 10, '2024-03-30 22:37:51', 'Enfant', 'All ages', 98, NULL),
-(2, 'talon', 'noir pour enfants', 100, 10, '2024-03-30 22:38:43', 'Enfant', 'All ages', 50, NULL);
+(123, 'Chemise', 'Chemise blanche pour enfants', 50, 5, '2024-04-05 00:25:36', 'Enfant', 'All ages', 94, NULL),
+(124, 'pantalon', 'pantalon blanche pour enfants', 50, 5, '2024-04-05 00:25:36', 'Enfant', 'All ages', 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -58,8 +70,41 @@ INSERT INTO `article` (`id`, `name`, `description`, `price`, `reduction`, `date_
 CREATE TABLE `commande` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date_commande` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_commande` timestamp NOT NULL DEFAULT current_timestamp(),
+  `total_price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`id`, `user_id`, `date_commande`, `total_price`) VALUES
+(1, 1, '2024-04-05 02:04:03', 0),
+(2, 1, '2024-04-05 02:04:26', 0),
+(3, 1, '2024-04-05 02:11:07', 0),
+(4, 1, '2024-04-05 02:12:24', 0),
+(5, 1, '2024-04-05 02:22:11', 0),
+(6, 1, '2024-04-05 02:37:36', 0),
+(7, 1, '2024-04-05 02:38:58', 0),
+(8, 1, '2024-04-05 02:54:20', 0),
+(9, 1, '2024-04-05 02:57:42', 0),
+(10, 1, '2024-04-05 03:02:25', 0),
+(11, 1, '2024-04-05 03:10:37', 0),
+(12, 1, '2024-04-05 03:11:07', 0),
+(13, 1, '2024-04-05 03:22:52', 0),
+(14, 1, '2024-04-05 03:23:35', 0),
+(15, 1, '2024-04-05 03:30:31', 0),
+(16, 1, '2024-04-05 03:40:05', 0),
+(17, 1, '2024-04-05 03:48:01', 0),
+(18, 1, '2024-04-05 03:50:50', 0),
+(19, 1, '2024-04-05 11:52:52', 0),
+(20, 1, '2024-04-05 12:05:36', 0),
+(21, 1, '2024-04-05 12:46:09', 0),
+(22, 1, '2024-04-05 12:51:29', 0),
+(23, 1, '2024-04-05 12:54:16', 0),
+(24, 1, '2024-04-05 12:55:16', 0),
+(25, 1, '2024-04-05 13:08:09', 0),
+(26, 1, '2024-04-05 13:44:40', 0);
 
 -- --------------------------------------------------------
 
@@ -93,16 +138,20 @@ CREATE TABLE `panier` (
 --
 
 INSERT INTO `panier` (`id`, `user_id`, `article_id`, `quantity`) VALUES
-(1, 1, 2, 1),
-(2, 1, 2, 1),
-(3, 1, 1, 1),
-(4, 1, 1, 1),
-(5, 1, 2, 1),
-(6, 1, 1, 1),
-(7, 1, 1, 1),
-(8, 1, 2, 1),
-(9, 1, 2, 1),
-(10, 1, 1, 1);
+(47, 1, 124, 1),
+(48, 1, 124, 1),
+(49, 1, 124, 1),
+(50, 1, 124, 1),
+(51, 1, 124, 1),
+(52, 1, 124, 1),
+(53, 1, 124, 1),
+(54, 1, 124, 1),
+(55, 1, 123, 1),
+(56, 1, 123, 1),
+(57, 1, 123, 1),
+(58, 1, 123, 1),
+(59, 1, 123, 1),
+(60, 1, 123, 1);
 
 -- --------------------------------------------------------
 
@@ -128,6 +177,12 @@ INSERT INTO `user` (`id`, `username`, `password`, `address`, `email`) VALUES
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `article`
@@ -169,10 +224,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT pour la table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `article`
+--
+ALTER TABLE `article`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+
+--
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `details_commande`
@@ -184,7 +251,7 @@ ALTER TABLE `details_commande`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT pour la table `user`
@@ -200,30 +267,25 @@ ALTER TABLE `user`
 -- Contraintes pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fk_commande_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `details_commande`
 --
 ALTER TABLE `details_commande`
-  ADD CONSTRAINT `details_commande_ibfk_1` FOREIGN KEY (`commande_id`) REFERENCES `commande` (`id`),
-  ADD CONSTRAINT `details_commande_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+  ADD CONSTRAINT `fk_details_commande_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`),
+  ADD CONSTRAINT `fk_details_commande_commande` FOREIGN KEY (`commande_id`) REFERENCES `commande` (`id`);
 
 --
 -- Contraintes pour la table `panier`
 --
 ALTER TABLE `panier`
-  ADD CONSTRAINT `panier_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `panier_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`);
+  ADD CONSTRAINT `fk_panier_article` FOREIGN KEY (`article_id`) REFERENCES `article` (`id`),
+  ADD CONSTRAINT `fk_panier_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-CREATE TABLE admins (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    userpassword VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL
-);
-INSERT INTO admins (username, userpassword, email) VALUES ('admin1', '123', 'eyakhlifi2105@gmail.com');
+ALTER TABLE `details_commande`
+  ADD COLUMN `prix_unitaire` float DEFAULT NULL;

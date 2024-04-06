@@ -1,17 +1,11 @@
 <?php
 require_once "autoload.php";
 require_once "ConnexionBD.php";
-require_once "cart_operations.php";
-require_once "add_to_cart.php";
-
-// Start the session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+require_once "Product.php"; // Include Product class if not already included
+require_once "Cart.php"; // Assuming Cart class is defined in Cart.php
 
 class CartManager
-{
-    public function addProductToCart(Product $product, $quantity, $userId)
+{public function addProductToCart(Product $product, $quantity, $userId)
     {
         try {
             // Create a new PDO instance
@@ -19,70 +13,115 @@ class CartManager
             $pdo = $connexion->getInstance();
             // Set the PDO error mode to exception
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            // Prepare the SQL query
+    
+            // Prepare the SQL query to insert into "panier" table
             $sql = "INSERT INTO panier (user_id, article_id, quantity) VALUES (:userId, :productId, :quantity)";
-            
-            // Prepare the statement
             $stmt = $pdo->prepare($sql);
-            
+    
             // Bind the parameters
             $productId = $product->getId();
             $stmt->bindParam(':userId', $userId);
             $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
             $stmt->bindParam(':quantity', $quantity);
-            
+    
             // Execute the prepared statement
             $stmt->execute();
-            
-            // Close the PDO connection
-            $pdo = null;
-            
+    
+            // Close the PDO connection (optional, as PDO will close automatically)
+            // $pdo = null;
+    
+            // Return true if the insertion was successful
             return true;
         } catch (PDOException $e) {
+            // Log the error or handle it appropriately
+            error_log("Error adding product to cart: " . $e->getMessage());
+            return false;
+        }
+    }
+    
+
+
+
+    public function placeOrder($userId)
+    {
+        try {
+            // Create a new instance of ConnexionBD
+            $connexion = new ConnexionBD();
+            $pdo = $connexion->getInstance();
+            // Set PDO error mode to exception
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Begin a transaction
+            $pdo->beginTransaction();
+
+            // Calculate the total price of the order
+            $totalPrice = $_SESSION['cart']->getTotalPriceAfterReduction();
+
+            // Insert a new order into the 'commande' table
+            $date = date('Y-m-d H:i:s');
+            $stmt = $pdo->prepare("INSERT INTO commande (user_id, date_commande, total_price) VALUES (:userId, :date, :totalPrice)");
+            $stmt->execute([':userId' => $userId, ':date' => $date, ':totalPrice' => $_SESSION['cart']->getTotalPriceAfterReduction()]);
+            $orderId = $pdo->lastInsertId(); // Get the ID of the inserted order
+            /* // details_commande
+            $copyStmt = $pdo->prepare("INSERT INTO details_commande (commande_id, article_id, quantity, prix_unitaire) 
+            SELECT :orderId, p.article_id, p.quantity, a.price 
+            FROM panier p 
+            INNER JOIN article a ON p.article_id = a.id 
+            WHERE p.user_id = :userId");
+        $copyStmt->execute([':orderId' => $orderId, ':userId' => $userId]);*/
+
+
+            // Commit the transaction
+            $pdo->commit();
+
+            // Clear the user's cart
+            $_SESSION['cart']->clear();
+
+            // Return the order ID
+            return $orderId;
+        } catch (PDOException $e) {
+            // Log or handle the exception
             echo "Error: " . $e->getMessage();
             return false;
         }
     }
-}
 
-// Check if the form is submitted for adding a product to the cart
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
-    // Retrieve the product ID from the form
-    $productId = $_POST['product_id'];
-    $quantity = $_POST['quantity'];
-    $product = getProductById($productId);
 
-    // Check if product exists before adding to cart
-    if ($product) {
-        // Check if the cart session variable exists, otherwise create it
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = new Cart();
+   /* public function insertOrderDetail($orderId, $productId, $quantity, $unitPrice)
+    {
+        try {
+            // Create a new PDO instance
+            $connexion = new ConnexionBD();
+            $pdo = $connexion->getInstance();
+            // Set the PDO error mode to exception
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Prepare the SQL query
+            $sql = "INSERT INTO details_commande (commande_id, article_id, quantity, prix_unitaire) 
+                    VALUES (:orderId, :productId, :quantity, :unitPrice)";
+            $stmt = $pdo->prepare($sql);
+
+            // Bind the parameters
+            $stmt->bindParam(':orderId', $orderId);
+            $stmt->bindParam(':productId', $productId);
+            $stmt->bindParam(':quantity', $quantity);
+            $stmt->bindParam(':unitPrice', $unitPrice);
+
+            // Execute the prepared statement
+            $stmt->execute();
+
+            // Close the PDO connection
+            $pdo = null;
+
+            return true;
+        } catch (PDOException $e) {
+            // Log or handle the exception
+            echo "Error: " . $e->getMessage();
+            return false;
         }
-
-        $cart = $_SESSION['cart'];
-        $itemFound = false;
-
-        // Check if the product already exists in the cart
-        foreach ($cart->getItems() as $item) {
-            if ($item->getProduct()->getId() == $productId) {
-                $itemFound = true;
-                $item->setQuantity($item->getQuantity() + $quantity);
-                break;
-            }
-        }
-
-        if (!$itemFound) {
-            // If the product is not in the cart, add it as a new item
-            $_SESSION['cart']->addProduct($product, $quantity);
-        }
-
-        // Update product stock in the database
-        stock_product::updateProductStock($productId, $product->getStock() - $quantity);
-    } else {
-        // Handle error (e.g., product not found)
-        echo "Product not found.";
     }
+*/
+
+
 }
 ?>
-

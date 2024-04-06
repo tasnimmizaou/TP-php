@@ -1,28 +1,52 @@
 <?php
-require_once "retrieveprbyID.php";
 require_once "autoload.php";
 require_once "ConnexionBD.php";
-require_once "cart_operations.php";
-require_once "cart_manager.php";
+require_once "Product.php";
+require_once "cart_manager.php"; // Assurez-vous que le nom du fichier est correctement orthographié
 
-// Check if the form for adding to cart is submitted
+// Start la session si ce n'est pas déjà fait
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Vérifie si le formulaire est soumis pour ajouter un produit au panier
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
-    // Get the product ID from the form
     $productId = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
 
-    // Get the product from the database using the ID
+    // Supposons que vous avez une fonction pour obtenir les détails du produit par ID
     $product = getProductById($productId);
 
-    // Check if the product exists
     if ($product) {
-        // Create a cart manager instance
-        $cartManager = new CartManager();
-        
-        // Add the product to the cart with a quantity of 1
-        $cartManager->addProductToCart($product, 1, 1); // Assuming user ID is 1 for now
-        
-        // Set a cookie to store the ID of the product added to the cart
-        setcookie("cart_product_id", $productId, time() + (86400 * 30), "/"); // Cookie valid for 30 days
+        // Vérifie si la variable de session 'cart' existe, sinon la crée
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = new Cart(1);
+        }
+
+        // Ajoute le produit au panier en session
+        $_SESSION['cart']->addProduct($product, $quantity);
+
+        // Ajoute également le produit à la table panier dans la base de données
+        // Assuming $product and $quantity are already set
+$userId = 1; // Replace with the actual user ID
+$cartManager = new CartManager();
+$success = $cartManager->addProductToCart($product, $quantity, $userId);
+
+if ($success) {
+    echo "Product added to cart and database successfully.";
+} else {
+    echo "Failed to add product to cart or database.";
+}
+
+
+        // Redirige vers la page index_cart.php pour afficher le panier mis à jour
+        header("Location: index_cart.php");
+        exit;
+    } else {
+        // Gère l'erreur (par exemple, produit non trouvé)
+        echo "Product not found.";
     }
 }
+
+
 ?>

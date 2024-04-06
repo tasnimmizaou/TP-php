@@ -1,44 +1,34 @@
 <?php
 require_once "autoload.php";
-require_once "ConnexionBD.php"; 
-require_once "retrieveprbyID.php";
-require_once "stock_product.php";
-require_once "Cart.php"; 
-require_once "add_to_cart.php";
-require_once "remove_from_cart.php";
+require_once "ConnexionBD.php";
+require_once "Product.php"; // Include Product class if not already included
+require_once "cart.php";
+require_once "cart_manager.php";
 
+// Assurez-vous que $user_id est défini avant de l'utiliser
+$user_id = 1; // Vous devrez remplacer ceci par votre méthode pour obtenir l'ID de l'utilisateur connecté
 
+// Place order
+if (isset($_POST['place_order'])) {
+    // Clear the cart after placing the order
+    //$_SESSION['cart']->clear();
+    // Unset the $_SESSION['cart'] variable
+    unset($_SESSION['cart']);
+    // Create a new empty Cart instance and assign it to $_SESSION['cart']
+    $_SESSION['cart'] = new Cart($user_id); // Pass the user_id to the Cart constructor
 
-// Check if the cart session variable exists, otherwise create it
-if (!isset($_SESSION['cart'])) {
-    // Set the default user_id to 1
-    $user_id = 1;
-    //$user_id = determineUserId();
-    $_SESSION['cart'] = new Cart($user_id);
-}
+    // Create a new CartManager instance
+    $cartManager = new CartManager();
+    // Place the order using the user_id
+    $orderId = $cartManager->placeOrder($user_id);
 
-
-
-//function determineUserId() {
-    // Example: Retrieve user ID from session or user authentication
-    //  let's assume the user ID is retrieved from the session
-   // if (isset($_SESSION['user_id'])) {
-       // return $_SESSION['user_id'];
-   // } else {
-        // If user ID is not available, you may return a default value or handle the scenario accordingly
-       // return null; // Return null or any default value
+    if ($orderId) {
+        //Order placed successfully, redirect or display a success message
+       header("Location: checkout.php?order_id=$orderId");
+        exit;
+    } else {
+        // Handle error if order placement fails
+        echo "Failed to place order.";
    // }
-//}
-
-
-    // Place order
-    if (isset($_POST['place_order'])) {
-        // Clear the cart after placing the order
-        $_SESSION['cart']->clear();
-        // Redirect to place_order.php or display a message
-        // header("Location: place_order.php");
-        // exit();
-        $orderPlacedMessage = "Your order has been placed. Thank you!";
-    }
-
+}}
 ?>

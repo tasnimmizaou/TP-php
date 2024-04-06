@@ -1,20 +1,22 @@
 <?php
 require_once "stock_product.php";
+
 class Cart
 {
-    private $items = [];
-   
+    private array $items = [];
+    private int $user_id;
 
-    // Constructor to initialize user_id
-    public function __construct(private $user_id)
+    public function __construct(int $user_id)
     {
+        $this->user_id = $user_id;
     }
 
-    public function getItems()
+    public function getItems(): array
     {
         return $this->items;
     }
-    public function getTotalSum()
+
+    public function getTotalSum(): float
     {
         $total = 0;
         foreach ($this->items as $item) {
@@ -23,10 +25,9 @@ class Cart
         return $total;
     }
 
-
-public function getTotalPriceAfterReduction()
+    public function getTotalPriceAfterReduction(): float
 {
-    $totalPrice = 0;
+    $totalPrice = 0; // Initialisation de la variable $totalPrice
 
     foreach ($this->items as $item) {
         $product = $item->getProduct();
@@ -41,32 +42,34 @@ public function getTotalPriceAfterReduction()
 }
 
 
-public function removeProductById($productId)
-{
-    foreach ($this->items as $key => $item) {
-        if ($item->getProduct()->getId() == $productId) {
-            // Increase the stock when removing the product
-            $product = $item->getProduct();
-            $newStock = $product->getStock() + $item->getQuantity();
-            stock_product::updateProductStock($productId, $newStock);
+    public function removeProductById($productId): void
+    {
+        foreach ($this->items as $key => $item) {
+            if ($item->getProduct()->getId() == $productId) {
+                // Increase the stock when removing the product
+                $product = $item->getProduct();
+                $newStock = $product->getStock() + $item->getQuantity();
+                stock_product::updateProductStock($productId, $newStock);
 
-            // Remove the product from the cart
-            unset($this->items[$key]);
-            break;
+                // Remove the product from the cart
+                unset($this->items[$key]);
+                break;
+            }
         }
+        // Reset array keys after removing an item
+        $this->items = array_values($this->items);
     }
-    // Reset array keys after removing an item
-    $this->items = array_values($this->items);
-}
 
-
-    public function addProduct($product, $quantity = 1)
+    public function addProduct($product, $quantity): void
     {
         // Check if the product is already in the cart
         foreach ($this->items as $item) {
-            if ($item->getProduct() == $product) {
+            if ($item->getProduct()->getId() == $product->getId()) {
                 // If the product is already in the cart, increase the quantity
                 $item->increaseQuantity($quantity);
+
+                // Update product stock in the database
+                stock_product::updateProductStock($product->getId(), $product->getStock() - $quantity);
                 return;
             }
         }
@@ -78,13 +81,15 @@ public function removeProductById($productId)
         stock_product::updateProductStock($product->getId(), $product->getStock() - $quantity);
     }
 
-   
-    public function clear()
+    public function clear(): void
     {
         $this->items = [];
     }
 
+
+   
     
 }
+
 
 ?>
