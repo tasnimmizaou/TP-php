@@ -7,6 +7,7 @@ class ArticleManager {
     private $pdo;
 
     public function __construct() {
+        
         $connexion = new ConnexionBD();
         $this->pdo = $connexion->getInstance();
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -16,7 +17,9 @@ class ArticleManager {
             $stmt = $this->pdo->prepare($sql);
             
             foreach ($params as $key => $value) {
-                $stmt->bindParam($key, $value);
+                //echo'hello';
+                 $stmt->bindValue($key, $value);
+                
             }
             
             $stmt->execute();
