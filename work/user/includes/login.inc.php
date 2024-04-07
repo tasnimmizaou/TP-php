@@ -45,8 +45,8 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
        $_SESSION["user_username"]= htmlspecialchars( $result["username"]);
        $_SESSION['last_session_regenerate'] = time();
 
-     $url="/TP-php/Index.php";
-     header("Location:../$url?login=success");
+     $url=".../Index.php";
+     header("Location:$url?login=success");
      $pdo=null;
      $stmt=null;
      die();
