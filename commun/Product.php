@@ -68,7 +68,7 @@ class Product
         return $this->price;
     }
     
-    public function getDetailsUrl($detailsPage = 'details.php') {
+    public function getDetailsUrl($detailsPage = '../affichage/details.php') {
         return $detailsPage . "?id=" . $this->id;
     }
     

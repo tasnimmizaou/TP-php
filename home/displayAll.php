@@ -17,10 +17,11 @@ $articleManager = new ArticleManager();
 $sql = "SELECT * FROM article";
 
 // Fetch articles using the query and ArticleManager
-$articles = $articleManager->getArticles($sql);
+$articles = $articleManager->getAllArticles();
 
 // Display articles using displayArticleGrid function
 displayArticleGrid($articles);
+
 ?>
 </body>
 </html>

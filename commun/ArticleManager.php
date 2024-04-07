@@ -15,15 +15,12 @@ class ArticleManager {
     public function getArticles($sql, $params = []) {
         try {
             $stmt = $this->pdo->prepare($sql);
-            
             foreach ($params as $key => $value) {
-                //echo'hello';
+                
                  $stmt->bindParam($key, $value);
                 
             }
-            
             $stmt->execute();
-            
             $articles = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $articles[] = new Product($row);
@@ -39,5 +36,25 @@ class ArticleManager {
         $sql = "SELECT * FROM article WHERE id = :id";
         $params = [':id' => $id];
         return $this->getArticles($sql, $params);
+    }
+    public function getAllArticles() {
+        try {
+            $sql = "SELECT * FROM article";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            
+            // Fetch all articles$articles = [];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                
+                $articles[] = new Product($row);
+                         
+            }
+            
+            return $articles;
+           
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return [];
+        }
     }
 }?>
