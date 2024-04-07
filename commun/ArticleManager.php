@@ -18,7 +18,7 @@ class ArticleManager {
             
             foreach ($params as $key => $value) {
                 //echo'hello';
-                 $stmt->bindValue($key, $value);
+                 $stmt->bindParam($key, $value);
                 
             }
             
