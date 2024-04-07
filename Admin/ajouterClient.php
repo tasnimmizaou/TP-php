@@ -1,4 +1,4 @@
-<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
+<?php include('header.php'); include('navbar.php'); ?>
 
 <div class="container-fluid">
     <h2 class="mt-5 mb-4">Ajouter un client</h2>

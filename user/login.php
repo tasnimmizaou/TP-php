@@ -40,6 +40,16 @@ require_once 'includes/login_view.inc.php';
         <form action="includes/logout.inc.php" method="POST">
             <button type="submit" style="width: 10%; padding: 10px; border: none; border-radius: 5px; background-color: #ff80bf; color: #fff; font-size: 16px; cursor: pointer;">Logout</button>
         </form>
+
+        <script>
+    function validateFormAndRedirect() {
+        window.location.href = 'Index.php.php'; 
+        return false; 
+    }
+</script>
+
+     
+
     </div>
 
 </body>

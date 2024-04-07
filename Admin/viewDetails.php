@@ -9,7 +9,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     $details_req->execute([$commande_id]);
     if($details_req->rowCount() > 0) {
         include('header.php');
-        include ("navbar.php") ;include('logout model.php');?>
+        include ("navbar.php") ;?>
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>

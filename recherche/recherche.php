@@ -12,19 +12,21 @@ require_once '../commun/ArticleManager.php';
 require_once '../commun/Product.php';
 require_once '../affichage/displayArticleGrid.php';
 
-$dbConnection = new DatabaseConnection("localhost", "root","", "girlhood");
-  $articleManager = new ArticleManager($dbConnection);
+//$dbConnection = new connexionBD("localhost", "root","", "girlhood");
+ // $articleManager = new ArticleManager($dbConnection);
+ $articleManager=new ArticleManager();
 
 // Récupérer la valeur de l'input du formulaire
 $search = $_POST['search'];
 
 // Requête SQL pour rechercher dans la base de données
-$query= "SELECT * FROM article WHERE description LIKE '%${search}%' OR  name LIKE '%${search}%'";
+$query = "SELECT * FROM article WHERE description LIKE :search OR name LIKE :search";
+$params = array(':search' => "%$search%");
 
-$articles = $articleManager->getArticles($query);
+$articles = $articleManager->getArticles($query, $params);
 displayArticleGrid($articles);
 
-$dbConnection->close();
+//$dbConnection->close();
 ?>
 </body>
 </html>

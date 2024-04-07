@@ -1,5 +1,4 @@
 <?php
-
 function displayArticleGrid($articles) {
   $articleCount = 0;
   ?>
@@ -9,7 +8,7 @@ function displayArticleGrid($articles) {
         <div class="row">
       <?php endif; ?>
       <div class="column">
-        <h2><?= $article->name ?></h2>
+        <h2><?= $article->getName() ?></h2>
         <img src="<?= $article->getImageDataUrl() ?>" alt="<?= $article->name ?>" class="img-responsive" />
         <p>Prix : <?= $article->getFormattedPrice() ?></p>
         <a href="<?= $article->getDetailsUrl() ?>">Voir les détails</a>

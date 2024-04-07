@@ -16,16 +16,19 @@
     <button class="nav-link active" id="home" type="button"><a href= "home/home.php" target="conteneur" >Home 🌐</a></button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="filtre"  type="button"><a href= "filtre/filtre.html" target="conteneur"> Filtre 📋</a></button>
+    <button class="nav-link" id="filtre"  type="button"><a href= "filtre/index.php" target="conteneur"> Filtre 📋</a></button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="login"  type="button"><a href= "work/user/backend/login.php" target="conteneur">login 🔒</a> </button>
+    <button class="nav-link" id="login"  type="button"><a href= "user/login.php" target="conteneur">login 🔒</a> </button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="contact" type="button" ><a href= "contact/index.php" target="conteneur">contact us📧 </a> </button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="basket" type="button"  ><a href= "work\cart\back_end\index_cart.php" target="conteneur">my cart 🛒 </a> </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="basket" type="button"  ><a href= "user/includes/logout.inc.php" target="conteneur">Logout 🔓 </a> </button>
   </li>
   <li class="nav-item ms-auto" role="presentation">
     <form class="d-flex" action="recherche/recherche.php" method="POST">
