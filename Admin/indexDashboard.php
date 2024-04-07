@@ -53,4 +53,4 @@ include("generateChart.php");
     </div>
 </div>
 
-<?php include("footer.php"); ?>
+<?php include("footer.php");include("scripts.php") ?>
