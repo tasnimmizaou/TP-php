@@ -1,4 +1,4 @@
-<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
+<?php include('header.php'); include('navbar.php'); ?>
 <div class="container-fluid">
     <h2 class="mt-5 mb-4">Ajouter un admin</h2>
     <form action="" method="post" enctype="multipart/form-data"> <!-- Ajout de enctype pour gérer les fichiers -->
