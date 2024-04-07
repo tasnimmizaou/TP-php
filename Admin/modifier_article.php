@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-include('navbar.php');include('logout model.php');
+include('navbar.php');
 ?>
 
 <div class="container-fluid">
