@@ -25,7 +25,7 @@
     <button class="nav-link" id="contact" type="button" ><a href= "contact/index.php" target="conteneur">contact us📧 </a> </button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="basket" type="button"  ><a href= "work\cart\back_end\index_cart.php" target="conteneur">my cart 🛒 </a> </button>
+    <button class="nav-link" id="basket" type="button"  ><a href= "shopping_cart/index_cart.php" target="conteneur">my cart 🛒 </a> </button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="basket" type="button"  ><a href= "user/includes/logout.inc.php" target="conteneur">Logout 🔓 </a> </button>
