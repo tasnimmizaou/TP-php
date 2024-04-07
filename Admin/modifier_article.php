@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier un article</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input, textarea, select {
-            margin-bottom: 10px;
-        }
-        .editable {
-            cursor: pointer;
-        }
-        .editable:hover {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-<div class="container">
+<?php
+include('header.php');
+include('navbar.php');include('logout model.php');
+?>
+
+<div class="container-fluid">
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
         $article_id = $_GET['id'];
@@ -32,7 +14,7 @@
         if ($row = $req->fetch(PDO::FETCH_ASSOC)) {
             ?>
             <h2 class="mt-5 mb-4">Modifier l'article</h2>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                 <div class="form-group">
                     <label>Nom :</label>
@@ -71,8 +53,12 @@
                     <label>Quantité :</label>
                     <input type="number" class="form-control" name="stock" id="stock" min="0" value="<?php echo $row['stock']; ?>" required>
                 </div>
+                <div class="form-group">
+                    <label for="image">Image :</label>
+                    <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
+                </div>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
-                <a href="table_dashboard.php" class="btn btn-secondary">Retour à la page de dashboard</a>
+                <a href="tableArticle.php" class="btn btn-secondary">Retour à la page de dashboard</a>
             </form>
             <?php
         } else {
@@ -83,10 +69,10 @@
     }
     ?>
 </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['id'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['reduction'], $_POST['category'], $_POST['age'], $_POST['stock'])) {
+    if (isset($_POST['id'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['reduction'], $_POST['category'], $_POST['age'], $_POST['stock'], $_FILES['image'])) {
         $article_id = $_POST['id'];
         $name = $_POST['name'];
         $description = $_POST['description'];
@@ -95,20 +81,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $category = $_POST['category'];
         $age = $_POST['age'];
         $stock = $_POST['stock'];
+        $image_path = $_FILES['image']['tmp_name'];
+        $imageData = file_get_contents($image_path);
 
         require_once 'autoloader.php';
         $pdo = ConnexionBD::getInstance();
-        $req = $pdo->prepare("UPDATE article SET name = ?, description = ?, price = ?, reduction = ?, category = ?, age = ?, stock = ? WHERE id = ?");
-        if ($req->execute([$name, $description, $price, $reduction, $category, $age, $stock, $article_id])) {
-            echo "<div class='alert alert-success mt-3' role='alert'>Les modifications ont été enregistrées avec succès.</div>";
+        $req = $pdo->prepare("UPDATE article SET name = ?, description = ?, price = ?, reduction = ?, category = ?, age = ?, stock = ?, image = ? WHERE id = ?");
+        if ($req->execute([$name, $description, $price, $reduction, $category, $age, $stock, $imageData, $article_id])) {
+            $_SESSION['success']="Article modifié avec succès";
         } else {
-            echo "<div class='alert alert-danger mt-3' role='alert'>Erreur lors de l'enregistrement des modifications.</div>";
+            $_SESSION['status']="Article non modifié";
         }
     } else {
-        echo "<div class='alert alert-warning mt-3' role='alert'>Veuillez fournir toutes les données nécessaires.</div>";
+        $_SESSION['status']="Veuillez fournir toutes les données nécessaires";
     }
 }
-?>
 
-</body>
-</html>
+include("footer.php");
+include("scripts.php");
+?>

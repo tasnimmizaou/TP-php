@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard d'administration_Ajouter un client</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container">
+<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
+
+<div class="container-fluid">
     <h2 class="mt-5 mb-4">Ajouter un client</h2>
     <form action="" method="post" enctype="multipart/form-data"> <!-- Ajout de enctype pour gérer les fichiers -->
         <div class="form-group">
@@ -30,7 +24,6 @@
     </form>
 </div>
 <?php
-// Traitement du formulaire lorsqu'il est soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['address']) && !empty($_POST['email'])) {
         $username = $_POST['username'];
@@ -41,16 +34,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo = ConnexionBD::getInstance();
         $req = $pdo->prepare("INSERT INTO user (username, password, address, email) VALUES (?, ?, ?, ?)");
         if ($req->execute([$username, $password, $address, $email])) {
-            echo "<div class='alert alert-success mt-3' role='alert'>Le client a été ajouté avec succès.</div>";
+            $_SESSION['success']="Client ajoute avec succes";
         } else {
-            echo "<div class='alert alert-danger mt-3' role='alert'>Erreur lors de l'ajout du client.</div>";
+            $_SESSION['status']="client non ajouté";
         }
     } else {
-        echo "<div class='alert alert-warning mt-3' role='alert'>Veuillez fournir toutes les données nécessaires.</div>";
+        $_SESSION['status']="Veuillez fournir toutes les données nécessaires";
+
     }
 }
 ?>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<?php include("footer.php"); include("scripts.php");?>
+

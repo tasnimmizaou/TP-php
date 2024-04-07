@@ -1,65 +1,41 @@
-
-<!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Dashboard <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3"> Dashboard </div>
     </a>
 
-    <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
     <div class="sidebar-heading">
         Interface
     </div>
 
-    <!-- Nav Item - Articles Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="article" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link " href="tableArticle.php">
             <span>Articles</span>
         </a>
     </li>
-    <script>
-        let button = document.querySelector("#article");
-        button.addEventListener('click',function(){
-            window.location.href="article.php";
-        })
-    </script>
 
-    <!-- Nav Item - Clients Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" id="client"" data-toggle="collapse" data-target="#collapseUtilities"
-           aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link " href="tableClient.php">
             <span>Clients</span>
         </a>
     </li>
-    <script>
-        let button = document.querySelector("#client");
-        button.addEventListener('click',function(){
-            window.location.href="tableClient.php";
-        })
-    </script>
-    <!-- Nav Item - Admins Collapse Menu -->
+
     <li class="nav-item">
-        <a class="nav-link collapsed" id="admin" data-toggle="collapse" data-target="#collapsePages"
-           aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link"  href="tableAdmin.php">
             <span>Admins</span>
         </a>
     </li>
-    <script>
-        let button = document.querySelector("#admin");
-        button.addEventListener('click',function(){
-            window.location.href="tableAdmin.php";
-        })
-    </script>
+    <li class="nav-item">
+        <a class="nav-link " href="tableCommande.php">
+            <span>Commands</span>
+        </a>
+    </li>
 
-    <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
@@ -67,27 +43,15 @@
     </li>
 
 
-    <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
-    <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
 
-    <!-- Sidebar Message -->
-    <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-        <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-    </div>
 
 </ul>
-<!-- End of Sidebar -->
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-</a>
+
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

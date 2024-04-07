@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard d'administration - Ajouter un article</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container">
+<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
+
+<div class="container-fluid">
     <h2 class="mt-5 mb-4">Ajouter un article</h2>
-    <form action="" method="post" enctype="multipart/form-data"> <!-- Ajout de enctype pour gérer les fichiers -->
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Nom :</label>
             <input type="text" class="form-control" name="name" id="name" pattern="[A-Za-z0-9\s]+"
@@ -47,16 +41,15 @@
             <label for="stock">Quantité :</label>
             <input type="number" class="form-control" name="stock" id="stock" min="0" required>
         </div>
-        <div class ="form-group">
+        <div class="form-group">
             <label for="image">Image :</label>
-            <input type="file" class="form-control-file" name="image" id="image">
+            <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
         </div>
         <button type="submit" class="btn btn-primary">Envoyer</button>
-        <a href="table_dashboard.php" class="btn btn-secondary">Retour à la page de dashboard</a>
+        <a href="tableArticle.php" class="btn btn-secondary">Retour à la page de dashboard</a>
     </form>
 </div>
 <?php
-// Traitement du formulaire lorsqu'il est soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['name'], $_POST['description'], $_POST['price'], $_POST['reduction'], $_POST['category'], $_POST['age'], $_POST['stock'], $_FILES['image'])) {
         $name = $_POST['name'];
@@ -66,26 +59,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $category = $_POST['category'];
         $age = $_POST['age'];
         $stock = $_POST['stock'];
-        $image = $_FILES['image']['name']; // lezmina nbadlou name baad du fichier image
 
-        // lezina : traitement de l'image, enregistrement dans le dossier approprié
+        $image = $_FILES['image']['tmp_name'];
+        $imageData = file_get_contents($image);
 
         require_once 'autoloader.php';
         $pdo = ConnexionBD::getInstance();
 
         $req = $pdo->prepare("INSERT INTO article (name, description, price, reduction, category, age, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
-        if ($req->execute([$name, $description, $price, $reduction, $category, $age, $stock, $image])) {
-            echo "<div class='alert alert-success mt-3' role='alert'>L'article a été ajouté avec succès.</div>";
+        if ($req->execute([$name, $description, $price, $reduction, $category, $age, $stock, $imageData])) {
+            $_SESSION['success']="Article ajouté avec succès";
         } else {
-            echo "<div class='alert alert-danger mt-3' role='alert'>Erreur lors de l'ajout de l'article.</div>";
+            $_SESSION['status']="Article non ajouté";
         }
     } else {
-        echo "<div class='alert alert-warning mt-3' role='alert'>Veuillez fournir toutes les données nécessaires.</div>";
+        $_SESSION['status']="Veuillez fournir toutes les données nécessaires";
     }
 }
-?>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+include("footer.php"); include("scripts.php");?>

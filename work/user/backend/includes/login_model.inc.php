@@ -1,7 +1,7 @@
 <?php
 declare (strict_types=1);
 function get_username(object $pdo, string $username){
-    $query ="SELECT * from users    WHERE username =:username;";
+    $query ="SELECT * from user    WHERE username =:username;";
     $stmt= $pdo->prepare($query);
     $stmt->bindParam(":username",$username);
     $stmt->execute();
