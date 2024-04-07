@@ -1,5 +1,5 @@
 
-<?php include('header.php'); include('navbar.php');include('logout model.php'); ?>
+<?php include('header.php'); include('navbar.php'); ?>
 <div class="container-fluid">
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
