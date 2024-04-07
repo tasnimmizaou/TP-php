@@ -27,6 +27,9 @@
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="basket" type="button"  ><a href= "work\cart\back_end\index_cart.php" target="conteneur">my cart 🛒 </a> </button>
   </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="basket" type="button"  ><a href= "work/user/includes/logout.inc.php" target="conteneur">Logout 🔓 </a> </button>
+  </li>
   <li class="nav-item ms-auto" role="presentation">
     <form class="d-flex" action="recherche/recherche.php" method="POST">
       <div class="input-group rounded">
