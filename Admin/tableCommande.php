@@ -5,7 +5,7 @@ $pdo = ConnexionBD::getInstance();
 $req = $pdo->prepare("SELECT * FROM commande");
 $req->execute();
 include('header.php');
- include ("navbar.php");include('logout model.php');
+ include ("navbar.php");
  ?>
 
 
