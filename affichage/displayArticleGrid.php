@@ -1,9 +1,10 @@
 <?php
+require_once('../commun/Product.php');
 function displayArticleGrid($articles) {
   $articleCount = 0;
   ?>
   <div class="container">
-    <?php foreach ($articles as $article):?>
+    <?php foreach ($articles as $article): ?>
       <?php if ($articleCount % 3 === 0): ?>
         <div class="row">
       <?php endif; ?>
