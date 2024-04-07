@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
 
        if ($errors) {
        $_SESSION["errors_login"] = $errors;
-       header("Location:../login.php");
+       header("Location:../test.php");
        die();
       }
       
@@ -44,9 +44,10 @@ if($_SERVER["REQUEST_METHOD"] === 'POST'){
        $_SESSION["user_id"]=$result["id"];
        $_SESSION["user_username"]= htmlspecialchars( $result["username"]);
        $_SESSION['last_session_regenerate'] = time();
-
-     $url=".../Index.php";
-     header("Location:$url?login=success");
+    
+     
+     //$url="C:\xampp\htdocs\TP-php\home\home.php";
+    // header("Location:../$url?login=success");
      $pdo=null;
      $stmt=null;
      die();
