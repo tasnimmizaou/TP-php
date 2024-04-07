@@ -1,7 +1,7 @@
 
 <?php  include('header.php');
 include ("navbar.php") ;
-include('logout model.php');?>
+?>
 
 
     <div id="content-wrapper" class="d-flex flex-column">
