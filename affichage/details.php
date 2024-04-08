@@ -31,15 +31,14 @@ $article = $articles[0]; // Get the first article from the array
 
 
     <h2>Acheter</h2>
-  <form action="../shopping_cart/add_to_cart.php?article_id=<?= $article->getId() ?>" method="post">
+  <form id="addToCartForm" action="../shopping_cart/add_to_cart.php?article_id=<?= $article->getId() ?>" method="post">
         <label for="quantity">Quantité:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="<?= $article->getStock() ?>" value="1" required>
         <input type="hidden" name="article_id" value="<?= $article->getId() ?>">
-        <button type="submit">Ajouter au panier</button>
+        <button type="submit"><a href="../shopping_cart/index_cart.php">jouter au panier</a></button>
+</form>
 
-    </form>
-
-    </div>
+</div>
 
 </body>
 </html>
