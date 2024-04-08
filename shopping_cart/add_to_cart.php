@@ -49,6 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         // Gère l'erreur (par exemple, produit non trouvé)
         echo "Product not found.";
     }
+
+    header("Location: ../shopping_cart/index_cart.php");
 }
 
 
