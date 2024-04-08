@@ -9,7 +9,7 @@ require_once ("../commun/Product.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_from_cart'])) {
     if (isset($_SESSION['cart'])) {
         $productId = $_POST['product_id'];
-        $userId = 1; // Set the user ID, replace with your logic to get the user ID
+         
 
         try {
             // Remove product from the cart

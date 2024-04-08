@@ -4,12 +4,12 @@ require_once "stock_product.php";
 class Cart
 {
     private array $items = [];
-    private int $user_id;
+    private int $userId;
     private static $instance = null;
 
-    public function __construct(int $user_id)
+    public function __construct(int $userId)
     {
-        $this->user_id = $user_id;
+        $this->$userId= $userId;
     }
 
     public function getItems(): array

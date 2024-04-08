@@ -3,7 +3,6 @@ require_once ("../commun/autoload.php");
 require_once ("../commun/ConnexionBD.php");
 require_once ("../commun/Product.php");
 require_once "cart_manager.php"; 
-
 require_once "cart.php";
 require_once "retrieveprbyID.php";
 require_once "add_to_cart.php";
@@ -13,14 +12,14 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-
+/*
 // Vérifie si le formulaire est soumis pour ajouter un produit au panier
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     $productId = $_POST['product_id'];
     $quantity = $_POST['quantity'];
 
     // Supposons que vous avez une fonction pour obtenir les détails du produit par ID
-    //$product = getProductById($productId);
+    $product = getProductById($productId);
 
     if ($product) {
         // Vérifie si la variable de session 'cart' existe, sinon la crée
@@ -34,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         // Ajoute également le produit à la table "panier" dans la base de données
         $cartManager = new CartManager();
         $userId = 1; // Remplacez ceci par l'ID de l'utilisateur réel
-        $success = $cartManager->addProductToCart($product->getId(), $quantity, $userId);
+        $success = $cartManager->addProductToCart($product, $quantity, $userId);
 
         if ($success) {
             echo "Product added to cart successfully.";
@@ -50,13 +49,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
         echo "Product not found.";
     }
 }
+*/
 
 
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id']; // Utilisez le user ID connecté
+} /*else {
+    // Redirigez l'utilisateur vers la page de connexion s'il n'est pas connecté
+    header("Location: ../user/login.php");
+    exit; // Assurez-vous de terminer le script après la redirection
+}*/
 
-if (isset($_POST['place_order'])) {
-    // Assurez-vous que $user_id est défini avant de l'utiliser
-    $user_id = 1; // Vous devrez remplacer ceci par votre méthode pour obtenir l'ID de l'utilisateur connecté
-
+// Vérifie si le formulaire est soumis pour passer la commande
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
     // Create a new CartManager instance
     $cartManager = new CartManager();
     // Place the order using the user_id

@@ -5,8 +5,7 @@ require_once ("../commun/Product.php");// Include Product class if not already i
 require_once "cart.php";
 require_once "cart_manager.php";
 
-// Assurez-vous que $user_id est défini avant de l'utiliser
-$user_id = 1; // Vous devrez remplacer ceci par votre méthode pour obtenir l'ID de l'utilisateur connecté
+
 
 // Place order
 if (isset($_POST['place_order'])) {
