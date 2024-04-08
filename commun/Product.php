@@ -12,6 +12,7 @@ class Product
     private $stock;
     private $image;
 
+    
     public function __construct(
         $id=null,
         $name=null ,
@@ -22,10 +23,9 @@ class Product
         $category=null,
         $age=null,
         $stock=null,
-        $image=null,
-        $data=null
+        $image=null
     ) {
-        if(!$data){$this->id = $id;
+        $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
@@ -35,17 +35,6 @@ class Product
         $this->age = $age;
         $this->stock = $stock;
         $this->image = $image;}
-        else{$this->id = $data['id'];
-            $this->name = $data['name'];
-            $this->description = $data['description'];
-            $this->price = $data['price'];
-            $this->reduction = $data['reduction'];
-            $this->date_ajout= $data['date_ajout'];
-            $this->category = $data['category']; // Ensure correct spelling
-            $this->age = $data['age'];
-            $this->stock = $data['stock'];
-            $this->image = $data['image'];}
-    }
         
     // Getters
     public function getId()
@@ -119,4 +108,38 @@ class Product
         return $cart->addProduct($this, $quantity);
     }
 }
+/*public function __construct(
+        $id=null,
+        $name=null ,
+        $description=null,
+        $price=null,
+        $reduction=null,
+        $date_ajout=null,
+        $category=null,
+        $age=null,
+        $stock=null,
+        $image=null,
+        $data=null
+    ) {
+        if(!$data){$this->id = $id;
+        $this->name = $name;
+        $this->description = $description;
+        $this->price = $price;
+        $this->reduction = $reduction;
+        $this->date_ajout = $date_ajout;
+        $this->category = $category;
+        $this->age = $age;
+        $this->stock = $stock;
+        $this->image = $image;}
+        else{$this->id = $data['id'];
+            $this->name = $data['name'];
+            $this->description = $data['description'];
+            $this->price = $data['price'];
+            $this->reduction = $data['reduction'];
+            $this->date_ajout= $data['date_ajout'];
+            $this->category = $data['category']; // Ensure correct spelling
+            $this->age = $data['age'];
+            $this->stock = $data['stock'];
+            $this->image = $data['image'];}
+    }*/
 ?>

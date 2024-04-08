@@ -23,7 +23,7 @@ class ArticleManager {
             $stmt->execute();
             $articles = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $articles[] = new Product($row);
+                $articles[] = new Product($row['id'],$row['name'], $row['description'], $row['price'], $row['reduction'], $row['date_ajout'], $row['category'], $row['age'], $row['stock'], $row['image']);
             }
             
             return $articles;
@@ -38,23 +38,8 @@ class ArticleManager {
         return $this->getArticles($sql, $params);
     }
     public function getAllArticles() {
-        try {
             $sql = "SELECT * FROM article";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
-            
-            // Fetch all articles$articles = [];
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                
-                $articles[] = new Product($row);
-                         
-            }
-            
-            return $articles;
-           
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return [];
-        }
+            return $this->getArticles( $sql );}
+          
     }
-}?>
+    ?>
