@@ -106,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
     }
 
     header("Location: index_cart.php");
+
 }
 
 

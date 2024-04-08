@@ -14,6 +14,7 @@ if (empty($articles)) {
 
 $article = $articles[0]; // Get the first article from the array
 
+//<button type="submit"><a href="../shopping_cart/index_cart.php">jouter au panier</a></button>
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,9 @@ $article = $articles[0]; // Get the first article from the array
         <label for="quantity">Quantité:</label>
         <input type="number" id="quantity" name="quantity" min="1" max="<?= $article->getStock() ?>" value="1" required>
         <input type="hidden" name="product_id" value="<?= $article->getId() ?>">
-        <button type="submit"><a href="../shopping_cart/index_cart.php">jouter au panier</a></button>
+        <input type="hidden" name="add_to_cart" value="1">
+        <button type="submit">Ajouter au panier</button>
+        
 </form>
 
 </div>
