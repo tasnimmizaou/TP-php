@@ -1,6 +1,6 @@
 
 <?php  include('header.php');
- include ("navbar.php") ;?>
+include ("navbar.php") ;?>
 
 
 <div id="content-wrapper" class="d-flex flex-column">
@@ -8,9 +8,9 @@
     <div id="content">
 
         <?php include 'nav.php' ?>
-        
+
         <div class="container-fluid">
-         <h1 class="h3 mb-2 text-gray-800">Clients</h1>
+            <h1 class="h3 mb-2 text-gray-800">Clients</h1>
             <?php
             require_once 'autoloader.php';
             $pdo = ConnexionBD::getInstance();
@@ -44,7 +44,7 @@
                                         <a href="modifierClient.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Modifier</a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id']; ?>">Supprimer</button>
+                                        <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id']; ?>" data-table="user">Supprimer</button>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -54,11 +54,11 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <button class="btn btn-primary mr-2 edit addButton" >Ajouter</button>
+                        <a class="btn btn-primary"  href="ajouterClient.php" >Ajouter</a>
                     </div>
                 </div>
             </div>
-            <script src="buttonsClient.js"></script>
+            <script src="buttons.js"></script>
         </div>
 
 
