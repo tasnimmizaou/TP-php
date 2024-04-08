@@ -51,7 +51,7 @@ include ("navbar.php") ;
                                     <td><?php echo $row['category']; ?></td>
                                     <td><?php echo $row['age']; ?></td>
                                     <td><?php echo $row['stock']; ?></td>
-                                    <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'" width="150px" height="150px" alt="Image">' ?></td>
+                                    <td><?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['image']).'" width="100px" height="100px" alt="Image">' ?></td>
                                     <td>
                                         <a href="modifier_article.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Modifier</a>
                                     </td>
