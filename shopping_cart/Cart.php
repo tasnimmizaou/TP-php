@@ -52,7 +52,7 @@ class Cart
                 $newStock = $product->getStock() + $item->getQuantity();
                 stock_product::updateProductStock($productId, $newStock);
 
-                // Remove the product from the cart
+               
                 unset($this->items[$key]);
                 break;
             }
@@ -82,10 +82,10 @@ class Cart
         stock_product::updateProductStock($product->getId(), $product->getStock() - $quantity);
     }
 
-    /*public function clear(): void
+    public function clear(): void
     {
         $this->items = [];
-    }*/
+    }
     public static function getCartInstance(int $userId): Cart
     {
         // Vérifie si une instance existe déjà, sinon crée une nouvelle instance

@@ -24,13 +24,13 @@ class CartManager
             $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
             $stmt->bindParam(':quantity', $quantity);
     
-            // Execute the prepared statement
+           
             $stmt->execute();
     
             // Close the PDO connection 
             // $pdo = null;
     
-            // Return true if the insertion was successful
+           
             return true;
         } catch (PDOException $e) {
             
@@ -45,7 +45,7 @@ class CartManager
    public function placeOrder($userId)
     {
         try {
-            // Create a new instance of ConnexionBD
+            
             $connexion = new ConnexionBD();
             $pdo = $connexion->getInstance();
           
@@ -77,7 +77,7 @@ class CartManager
             // Clear the user's cart
             //$_SESSION['cart']->clear();
 
-            // Return the order ID
+            
             return $orderId;
         } catch (PDOException $e) {
            

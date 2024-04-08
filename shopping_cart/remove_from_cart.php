@@ -3,8 +3,6 @@ require_once ("../commun/autoload.php");
 require_once ("../commun/ConnexionBD.php");
 require_once "Cart.php";
 require_once ("../commun/Product.php");
-// Check if the cart session variable exists
-//session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_from_cart'])) {
     if (isset($_SESSION['cart'])) {

@@ -28,7 +28,8 @@ function getProductById($productId)
                 $productData['image']
             );
         } else {
-            return null; // Return null if the product is not found
+            return null; // Return null if the product is not found    
+            
         }
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();

@@ -3,80 +3,11 @@ require_once ("../commun/autoload.php");
 require_once ("../commun/ConnexionBD.php");
 require_once ("../commun/Product.php");
 require_once "cart_manager.php"; 
-require_once "cart.php";
 require_once "retrieveprbyID.php";
 require_once "add_to_cart.php";
 require_once "remove_from_cart.php";
-// Start la session si ce n'est pas déjà fait
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-/*
-// Vérifie si le formulaire est soumis pour ajouter un produit au panier
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_to_cart'])) {
-    $productId = $_POST['product_id'];
-    $quantity = $_POST['quantity'];
-
-    // Supposons que vous avez une fonction pour obtenir les détails du produit par ID
-    $product = getProductById($productId);
-
-    if ($product) {
-        // Vérifie si la variable de session 'cart' existe, sinon la crée
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = new Cart(1);
-        }
-
-        // Ajoute le produit au panier en session
-        $_SESSION['cart']->addProduct($product, $quantity);
-
-        // Ajoute également le produit à la table "panier" dans la base de données
-        $cartManager = new CartManager();
-        $userId = 1; // Remplacez ceci par l'ID de l'utilisateur réel
-        $success = $cartManager->addProductToCart($product, $quantity, $userId);
-
-        if ($success) {
-            echo "Product added to cart successfully.";
-        } else {
-            echo "Failed to add product to cart.";
-        }
-
-        // Redirige vers la page index_cart.php pour afficher le panier mis à jour
-        header("Location: index_cart.php");
-        exit;
-    } else {
-        // Gère l'erreur (par exemple, produit non trouvé)
-        echo "Product not found.";
-    }
-}
-*/
-
-
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id']; // Utilisez le user ID connecté
-} /*else {
-    // Redirigez l'utilisateur vers la page de connexion s'il n'est pas connecté
-    header("Location: ../user/login.php");
-    exit; // Assurez-vous de terminer le script après la redirection
-}*/
-
-// Vérifie si le formulaire est soumis pour passer la commande
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
-    // Create a new CartManager instance
-    $cartManager = new CartManager();
-    // Place the order using the user_id
-    $orderId = $cartManager->placeOrder($user_id);
-
-    if ($orderId) {
-        // Commande placée avec succès, redirigez ou affichez un message de réussite
-        header("Location: checkout.php?order_id=$orderId");
-        exit;
-    } else {
-        // Gérer l'erreur si la commande échoue
-        echo "Failed to place order.";
-    }
-}
-
+require_once "place_order.php";
+require_once "Cart.php";
 
 
 
@@ -129,18 +60,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                     <tr>
                         <td><?php echo $cartItem->getProduct()->getName(); ?></td>
                         <td><?php echo $cartItem->getQuantity(); ?></td>
-                        <td>$<?php
+                        <td><?php
                             $originalPrice = $cartItem->getProduct()->getPrice() * $cartItem->getQuantity();
                             $reductionPercentage = $cartItem->getProduct()->getReduction();
                             $reducedPrice = $originalPrice * (1 - $reductionPercentage / 100);
                             echo number_format($reducedPrice, 2);
-                            ?></td>
+                            ?> dt</td>
                         <td><?php echo $reductionPercentage . "%"; ?></td>
                         <td>
                             <form method="post">
                                 <input type="hidden" name="product_id"
                                        value="<?php echo $cartItem->getProduct()->getId(); ?>">
-                                <button type="submit" name="remove_from_cart" class="btn btn-danger"><i
+                                <button type="submit" name="remove_from_cart" class="btn btn-danger"><i   
                                             class="fas fa-trash"></i></button>
                             </form>
                         </td>
@@ -149,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
                 </tbody>
             </table>
             <!-- Total Price after Reduction -->
-            <p>Total Price : $<?php echo number_format($_SESSION['cart']->getTotalPriceAfterReduction(), 2); ?></p>
+            <p>Total Price : <?php echo number_format($_SESSION['cart']->getTotalPriceAfterReduction(), 3); ?>   dt</p>
           
             <form method="post" action="">
     
