@@ -13,7 +13,6 @@ include('header.php');
 <div class="content">
     <?php include 'nav.php' ?>
     <div class="container-fluid">
-     <h1 class="h3 mb-2 text-gray-800">Commands</h1>
     <div class="row">
         <div class="col">
             <table class="table table-bordered table-hover">
@@ -22,7 +21,6 @@ include('header.php');
                     <th>Commande ID</th>
                     <th>Date Commande</th>
                     <th>User ID</th>
-                    <th>Total Price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,11 +31,10 @@ include('header.php');
                         <td><?php echo $row['id']; ?></td>
                         <td><?php echo $row['date_commande']; ?></td>
                         <td><?php echo $row['user_id']; ?></td>
-                        <td><?php echo $row['total_price']; ?></td>
 
                         <td>
                             <a href="viewDetails.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">View_Details</a>
-                            <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id']; ?>">Supprimer</button>
+                            <button class="btn btn-danger deleteButton" data-id="<?php echo $row['id']; ?>" data-table ="commande">Supprimer</button>
                         </td>
                     </tr>
                 <?php } ?>
@@ -48,4 +45,5 @@ include('header.php');
     </div>
 </div>
 </div>
+<script src="buttons.js"></script>
 <?php include("footer.php"); include("scripts.php");?>
