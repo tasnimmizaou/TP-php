@@ -11,14 +11,14 @@ class CartManager
             // Create a new PDO instance
             $connexion = new ConnexionBD();
             $pdo = $connexion->getInstance();
-            // Set the PDO error mode to exception
+         
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
             // Prepare the SQL query to insert into "panier" table
             $sql = "INSERT INTO panier (user_id, article_id, quantity) VALUES (:userId, :productId, :quantity)";
             $stmt = $pdo->prepare($sql);
     
-            // Bind the parameters
+         
             $productId = $product->getId();
             $stmt->bindParam(':userId', $userId);
             $stmt->bindParam(':productId', $productId, PDO::PARAM_INT);
@@ -27,13 +27,13 @@ class CartManager
             // Execute the prepared statement
             $stmt->execute();
     
-            // Close the PDO connection (optional, as PDO will close automatically)
+            // Close the PDO connection 
             // $pdo = null;
     
             // Return true if the insertion was successful
             return true;
         } catch (PDOException $e) {
-            // Log the error or handle it appropriately
+            
             error_log("Error adding product to cart: " . $e->getMessage());
             return false;
         }
@@ -48,13 +48,13 @@ class CartManager
             // Create a new instance of ConnexionBD
             $connexion = new ConnexionBD();
             $pdo = $connexion->getInstance();
-            // Set PDO error mode to exception
+          
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Begin a transaction
+          
             $pdo->beginTransaction();
 
-            // Calculate the total price of the order
+        
             $totalPrice = $_SESSION['cart']->getTotalPriceAfterReduction();
 
             // Insert a new order into the 'commande' table
@@ -71,7 +71,7 @@ class CartManager
         $copyStmt->execute([':orderId' => $orderId, ':userId' => $userId]);
 
 
-            // Commit the transaction
+           
             $pdo->commit();
 
             // Clear the user's cart
@@ -80,7 +80,7 @@ class CartManager
             // Return the order ID
             return $orderId;
         } catch (PDOException $e) {
-            // Log or handle the exception
+           
             echo "Error: " . $e->getMessage();
             return false;
         }}
