@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['place_order'])) {
         <!-- Display shopping cart -->
         <?php if (!isset($_SESSION['cart']) || count($_SESSION['cart']->getItems()) === 0): ?>
             <p class="empty-cart-message">Your cart is empty!</p>
-            <form method="post" action="product_display.php">
+            <form method="post" action="../home/home.php">
                 <button type="submit" class="btn btn-primary">Continue Shopping</button>
             </form>
         <?php else: ?>
