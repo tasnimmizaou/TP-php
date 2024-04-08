@@ -2,7 +2,7 @@
 require_once ("../commun/autoload.php");
 require_once ("../commun/ConnexionBD.php");
 require_once ("../commun/Product.php");
-require_once "cart_manager.php"; 
+require_once ("cart_manager.php"); 
 
 session_start();
 
