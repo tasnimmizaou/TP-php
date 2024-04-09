@@ -12,7 +12,7 @@
 
         <div class="container-fluid">
             <?php
-            require_once 'autoloader.php';
+            require_once 'commun/autoloader.php';
             $pdo = ConnexionBD::getInstance();
             $req = $pdo->prepare("SELECT * FROM admins");
             $req->execute();
