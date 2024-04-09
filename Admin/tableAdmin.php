@@ -18,7 +18,7 @@
             $req->execute();
             ?>
             <div class="container">
-                <h2 class="mt-3 mb-4">Tableau de bord d'administration</h2>
+                <h2 class="mt-3 mb-4">Admins</h2>
                 <div class="row">
                     <div class="col">
                         <table class="table table-bordered table-hover">
