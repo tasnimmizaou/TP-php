@@ -14,7 +14,7 @@ include ("navbar.php") ;
             <h1 class="h3 mb-2 text-gray-800">Articles</h1>
 
             <?php
-            require_once 'autoloader.php';
+            require_once 'commun/autoloader.php';
             $pdo = ConnexionBD::getInstance();
             $req = $pdo->prepare("SELECT * FROM article");
             $req->execute();

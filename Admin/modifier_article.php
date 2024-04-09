@@ -7,7 +7,7 @@ include('navbar.php');
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
         $article_id = $_GET['id'];
-        require_once 'autoloader.php';
+        require_once 'commun/autoloader.php';
         $pdo = ConnexionBD::getInstance();
         $req = $pdo->prepare("SELECT * FROM article WHERE id = ?");
         $req->execute([$article_id]);
