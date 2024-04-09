@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
         $userpassword = $_POST['userpassword'];
         $email = $_POST['email'];
-        require_once 'autoloader.php';
+        require_once 'commun/autoloader.php';
         $pdo = ConnexionBD::getInstance();
 
         $req = $pdo->prepare("INSERT INTO admins (username,userpassword, email) VALUES (?, ?, ?)");
