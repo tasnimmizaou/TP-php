@@ -3,7 +3,7 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
     $recordId = $_POST['id'];
     $tableName = $_POST['table'];
 
-    require_once 'autoloader.php';
+    require_once 'commun/autoloader.php';
     $pdo = ConnexionBD::getInstance();
 
     $query = "DELETE FROM $tableName WHERE id = ?";
