@@ -4,7 +4,7 @@
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
         $client_id = $_GET['id'];
-        require_once 'commun/autoloader.php';
+        require_once 'commun/autoload.php';
         $pdo = ConnexionBD::getInstance();
         $req = $pdo->prepare("SELECT * FROM user WHERE id = ?");
         $req->execute([$client_id]);
