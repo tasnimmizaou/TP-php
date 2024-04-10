@@ -3,7 +3,7 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
     $recordId = $_POST['id'];
     $tableName = $_POST['table'];
 
-    require_once 'commun/autoloader.php';
+    require_once 'commun/autoload.php';
     $pdo = ConnexionBD::getInstance();
     if ($tableName == 'article') {
         $updateQuery = "UPDATE details_commande SET article_id = NULL WHERE article_id = ?";
