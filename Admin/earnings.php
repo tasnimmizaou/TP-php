@@ -1,5 +1,5 @@
 <?php
-require_once 'commun/autoloader.php'; 
+require_once 'commun/autoload.php'; 
 
 function calculateTotalEarningsAndSales() {
 $pdo = ConnexionBD::getInstance();
