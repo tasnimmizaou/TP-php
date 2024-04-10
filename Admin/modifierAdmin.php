@@ -4,7 +4,7 @@
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])) {
         $admin_id = $_GET['id'];
-        require_once 'commun/autoloader.php';
+        require_once 'commun/autoload.php';
         $pdo = ConnexionBD::getInstance();
         $req = $pdo->prepare("SELECT * FROM admins WHERE id = ?");
         $req->execute([$admin_id]);
