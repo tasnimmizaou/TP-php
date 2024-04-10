@@ -1,5 +1,5 @@
 <?php
-require_once 'commun/autoloader.php';
+require_once 'commun/autoload.php';
 $pdo = ConnexionBD::getInstance();
 
 $req = $pdo->prepare("SELECT * FROM commande");
