@@ -1,6 +1,5 @@
 <?php
-require_once "commun/autoloader.php";
-
+require_once "commun/autoload.php";
 session_start();
 
 if(isset($_POST['uname']) && isset($_POST['password'])) {
