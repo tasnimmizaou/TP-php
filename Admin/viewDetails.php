@@ -1,5 +1,5 @@
 <?php
-require_once 'commun/autoloader.php';
+require_once 'commun/autoload.php';
 $pdo = ConnexionBD::getInstance();
 
 if(isset($_GET['id']) && !empty($_GET['id'])) {
