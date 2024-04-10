@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $image = $_FILES['image']['tmp_name'];
         $imageData = file_get_contents($image);
 
-        require_once 'commun/autoloader.php';
+        require_once 'commun/autoload.php';
         $pdo = ConnexionBD::getInstance();
 
         $req = $pdo->prepare("INSERT INTO article (name, description, price, reduction, category, age, stock, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
