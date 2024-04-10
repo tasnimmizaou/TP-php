@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = $_POST['password'];
         $address = $_POST['address'];
         $email = $_POST['email'];
-        require_once 'commun/autoloader.php';
+        require_once 'commun/autoload.php';
         $pdo = ConnexionBD::getInstance();
         $req = $pdo->prepare("INSERT INTO user (username, password, address, email) VALUES (?, ?, ?, ?)");
         if ($req->execute([$username, $password, $address, $email])) {
