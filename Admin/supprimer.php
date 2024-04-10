@@ -21,6 +21,11 @@ if (isset($_POST['id']) && isset($_POST['table'])) {
         $stmt2 = $pdo->prepare($updateQuery2);
         $stmt2->execute([$recordId]);
     }
+    if ($tableName == 'commande') {
+        $req_details = $pdo->prepare("DELETE FROM details_commande WHERE commande_id = ?");
+        $req_details->execute([$recordId]);
+    }
+
     $query = "DELETE FROM $tableName WHERE id = ?";
 
     $stmt = $pdo->prepare($query);
