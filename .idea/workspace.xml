@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="163f38d6-e1b3-4ca3-bed3-a6139a66684f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Admin/commun/ConnexionBD.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/commun/ConnexionBD.php" afterDir="false" />
-    </list>
+    <list default="true" id="163f38d6-e1b3-4ca3-bed3-a6139a66684f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +69,7 @@
       <updated>1713470598141</updated>
       <workItem from="1713470599282" duration="1423000" />
       <workItem from="1713472087355" duration="2249000" />
-      <workItem from="1713552333191" duration="1248000" />
+      <workItem from="1713552333191" duration="1600000" />
     </task>
     <servers />
   </component>
